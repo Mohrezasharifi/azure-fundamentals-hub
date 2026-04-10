@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Azure Fundamentals Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080C16;--s1:#0E1420;--s2:#14203A;--s3:#1A2B4A;--t1:#F2F6FF;--t2:#8A9EC0;--t3:#3D5270;--bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.15);--acc:#0066FF;--acc-bg:rgba(0,102,255,.1);--acc-bd:rgba(0,102,255,.28);--mono:"Space Mono",monospace;--sans:"Manrope",sans-serif;--r:10px;--rl:16px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(0,102,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,102,255,.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* LANDING */
+#landing{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px;text-align:center;position:relative;z-index:1}
+.land-blob{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(0,102,255,.14) 0%,rgba(124,92,255,.08) 45%,transparent 70%);pointer-events:none;filter:blur(10px)}
+.land-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(14,165,233,.07);border:1px solid rgba(14,165,233,.18);border-radius:100px;padding:6px 16px;margin-bottom:26px;animation:fadeUp .5s ease both}
+.land-dot{width:7px;height:7px;border-radius:50%;background:#0066FF;box-shadow:0 0 8px #0066FF;animation:pulse 2s infinite}
+.land-badge span{font-family:var(--mono);font-size:10px;color:#0066FF;letter-spacing:.1em}
+.land-title{font-size:clamp(30px,7vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:10px;animation:fadeUp .5s .1s ease both}
+.land-title em{font-style:normal;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.land-sub{font-size:14px;color:var(--t2);max-width:500px;line-height:1.65;margin-bottom:44px;font-weight:400;animation:fadeUp .5s .2s ease both}
+.cert-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;width:100%;max-width:840px;animation:fadeUp .5s .3s ease both}
+.cc{border-radius:var(--rl);padding:24px 20px;text-align:left;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;border:1px solid var(--bd);position:relative;overflow:hidden}
+.cc:hover{transform:translateY(-4px)}
+.cc-az{background:linear-gradient(140deg,#080C16,#0B1535);border-color:rgba(0,102,255,.25)}
+.cc-az:hover{border-color:rgba(0,102,255,.55);box-shadow:0 16px 48px rgba(0,102,255,.12)}
+.cc-dp{background:linear-gradient(140deg,#071A14,#0B2018);border-color:rgba(0,179,126,.25)}
+.cc-dp:hover{border-color:rgba(0,179,126,.55);box-shadow:0 16px 48px rgba(0,179,126,.12)}
+.cc-ai{background:linear-gradient(140deg,#100820,#180B28);border-color:rgba(124,92,255,.25)}
+.cc-ai:hover{border-color:rgba(124,92,255,.55);box-shadow:0 16px 48px rgba(124,92,255,.12)}
+.cc-code{font-family:var(--mono);font-size:26px;font-weight:700;margin-bottom:8px;line-height:1}
+.cc-az .cc-code{color:#0066FF}.cc-dp .cc-code{color:#00B37E}.cc-ai .cc-code{color:#9B7DFF}
+.cc-name{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:5px}
+.cc-desc{font-size:11px;color:var(--t2);line-height:1.55;font-weight:400;margin-bottom:12px}
+.cc-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.cc-pill{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px}
+.cc-az .cc-pill{background:rgba(0,102,255,.1);color:#7eb8ff;border:1px solid rgba(0,102,255,.25)}
+.cc-dp .cc-pill{background:rgba(0,179,126,.1);color:#6ee7b7;border:1px solid rgba(0,179,126,.25)}
+.cc-ai .cc-pill{background:rgba(124,92,255,.1);color:#c4b5fd;border:1px solid rgba(124,92,255,.25)}
+.cc-cta{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:7px 14px;border-radius:var(--r);border:none;cursor:pointer;font-family:var(--sans);transition:opacity .15s}
+.cc-az .cc-cta{background:#0066FF;color:#fff}.cc-dp .cc-cta{background:#00B37E;color:#fff}.cc-ai .cc-cta{background:#7C5CFF;color:#fff}
+.cc-cta:hover{opacity:.82}
+.retire-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.22);border-radius:5px;padding:3px 8px;font-size:9px;font-family:var(--mono);color:#fca5a5;margin-bottom:8px}
+
+/* HUB */
+#hub{display:none;position:relative;z-index:1}
+.topbar{position:sticky;top:0;z-index:200;background:rgba(7,9,15,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--bd);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;padding:0 16px;gap:0}
+.topbar::-webkit-scrollbar{display:none}
+.tb-brand{display:flex;flex-direction:column;justify-content:center;padding:8px 14px 8px 0;border-right:1px solid var(--bd);margin-right:2px;cursor:pointer;flex-shrink:0}
+.tb-brand-code{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--acc);transition:color .3s;line-height:1}
+.tb-brand-sub{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.07em;margin-top:2px}
+.cert-switcher{display:flex;border-right:1px solid var(--bd);flex-shrink:0}
+.ctab{padding:12px 12px;font-size:10px;font-weight:700;color:var(--t3);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;font-family:var(--mono);transition:color .2s,border-color .2s}
+.ctab:hover{color:var(--t2)}
+.ctab.az.active{color:#0066FF;border-bottom-color:#0066FF}
+.ctab.dp.active{color:#00B37E;border-bottom-color:#00B37E}
+.ctab.ai.active{color:#9B7DFF;border-bottom-color:#9B7DFF}
+.sec-tabs{display:flex;flex:1}
+.stab{padding:12px 12px;font-size:11px;font-weight:600;color:var(--t3);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;font-family:var(--sans);transition:color .2s,border-color .2s}
+.stab:hover{color:var(--t2)}
+.stab.active{color:var(--acc);border-bottom-color:var(--acc)}
+.back-btn{margin-left:auto;padding:5px 10px;border-radius:var(--r);border:1px solid var(--bd);background:transparent;color:var(--t3);font-size:9px;cursor:pointer;font-family:var(--mono);transition:color .2s,border-color .2s;white-space:nowrap;flex-shrink:0}
+.back-btn:hover{color:var(--t1);border-color:var(--bd2)}
+main{max-width:920px;margin:0 auto;padding:32px 18px 72px;position:relative;z-index:1}
+.panel{display:none}.panel.active{display:block;animation:fadeUp .3s ease both}
+.slabel{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;transition:color .3s}
+.stitle{font-size:22px;font-weight:800;color:var(--t1);margin-bottom:4px;letter-spacing:-.025em}
+.sdesc{font-size:12px;color:var(--t2);margin-bottom:22px;line-height:1.65;font-weight:400;max-width:640px}
+
+/* cert hero */
+.cert-hero{border-radius:var(--rl);padding:18px 22px;margin-bottom:20px;display:flex;align-items:center;gap:18px;border:1px solid var(--acc-bd);background:var(--acc-bg);transition:all .3s;flex-wrap:wrap}
+.cert-hero-code{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--acc);transition:color .3s;flex-shrink:0}
+.cert-hero-name{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.cert-hero-meta{font-family:var(--mono);font-size:10px;color:var(--t2)}
+.cert-hero-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.ctag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px;background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc-bd);transition:all .3s}
+.retire-banner{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:var(--r);padding:9px 13px;margin-bottom:14px;font-size:11px;color:#fca5a5;font-weight:400;line-height:1.55}
+.retire-banner strong{font-weight:700;color:#f87171}
+
+/* domains */
+.dg{display:grid;gap:11px;margin-bottom:18px}
+.dcard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:14px 18px;transition:border-color .2s,transform .15s}
+.dcard:hover{border-color:var(--bd2);transform:translateY(-1px)}
+.dcard-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.dpct{font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:100px;font-weight:700;background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc-bd);transition:all .3s}
+.dname{font-size:13px;font-weight:700;color:var(--t1)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:5px;background:var(--s2);color:var(--t2);border:1px solid var(--bd)}
+.warn-box{background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.18);border-radius:var(--rl);padding:13px 16px;margin-top:4px}
+.warn-lbl{font-family:var(--mono);font-size:9px;color:#f59e0b;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.warn-box ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.warn-box li{font-size:11px;color:var(--t2);padding-left:11px;border-left:2px solid rgba(245,158,11,.3);line-height:1.55}
+.warn-box li strong{color:var(--t1);font-weight:700}
+.reg-card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:14px 18px;margin-top:14px}
+.reg-title{font-family:var(--mono);font-size:9px;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;transition:color .3s}
+.reg-steps{list-style:none;display:flex;flex-direction:column;gap:5px}
+.reg-steps li{font-size:11px;color:var(--t2);display:flex;align-items:flex-start;gap:6px;line-height:1.55}
+.reg-steps li::before{content:"→";color:var(--acc);font-family:var(--mono);flex-shrink:0;transition:color .3s}
+.reg-steps a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-bd);transition:color .3s}
+.reg-steps a:hover{color:var(--t1)}
+
+/* progress bar */
+.pbar-wrap{height:3px;background:var(--s3);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.pbar{height:100%;border-radius:3px;background:var(--acc);transition:width .4s ease,background .3s}
+
+/* flashcards */
+.fc-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.fc-count{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.flashcard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:34px 30px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:border-color .2s,transform .15s;margin-bottom:11px;position:relative;overflow:hidden}
+.flashcard:hover{border-color:var(--bd2);transform:translateY(-2px)}
+.flashcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc);transform:scaleX(0);transition:transform .3s,background .3s;transform-origin:left}
+.flashcard.flipped::before{transform:scaleX(1)}
+.fc-q{font-size:15px;font-weight:700;color:var(--t1);line-height:1.4;letter-spacing:-.01em}
+.fc-a{font-size:12px;color:var(--t2);margin-top:11px;line-height:1.7;display:none;font-weight:400}
+.fc-a.show{display:block;animation:fadeUp .2s ease both}
+.fc-hint{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:13px;letter-spacing:.1em;text-transform:uppercase}
+.fc-cat{position:absolute;top:11px;right:11px;font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.07em;text-transform:uppercase}
+.fc-doc{display:none;margin-top:9px;font-size:10px}
+.fc-doc.show{display:block}
+.fc-doc a{color:var(--acc);text-decoration:none;font-family:var(--mono);border-bottom:1px solid var(--acc-bd);transition:color .3s}
+.fc-doc a:hover{color:var(--t1)}
+.fc-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.filter-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px}
+.fbtn{padding:3px 10px;border-radius:100px;border:1px solid var(--bd);background:var(--s2);color:var(--t3);font-size:10px;font-family:var(--mono);cursor:pointer;transition:all .15s}
+.fbtn:hover{color:var(--t2);border-color:var(--bd2)}
+.fbtn.active{background:var(--acc-bg);border-color:var(--acc-bd);color:var(--acc)}
+
+/* buttons */
+.btn{padding:7px 15px;border-radius:var(--r);border:1px solid var(--bd2);background:var(--s2);color:var(--t2);cursor:pointer;font-size:11px;font-family:var(--sans);font-weight:600;transition:all .15s}
+.btn:hover{background:var(--s3);color:var(--t1)}
+.btn:active{transform:scale(.97)}
+.btn-acc{background:var(--acc);color:#000;border-color:var(--acc);font-weight:700}
+.btn-acc:hover{opacity:.85}
+
+/* quiz */
+.qmeta{font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:6px}
+.qcard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:20px;margin-bottom:11px}
+.qq{font-size:14px;font-weight:700;color:var(--t1);line-height:1.5;margin-bottom:13px;letter-spacing:-.01em}
+.qopts{display:flex;flex-direction:column;gap:6px}
+.qopt{padding:9px 13px;border-radius:var(--r);border:1px solid var(--bd);background:var(--s2);color:var(--t2);cursor:pointer;font-size:12px;font-family:var(--sans);font-weight:400;transition:all .15s;text-align:left;width:100%}
+.qopt:hover:not(.disabled){background:var(--s3);color:var(--t1);border-color:var(--bd2)}
+.qopt.correct{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.4);color:#5DDBB5}
+.qopt.wrong{background:rgba(244,63,94,.08);border-color:rgba(244,63,94,.4);color:#fb7185}
+.qopt.disabled{cursor:default}
+.qfb{display:none;margin-top:11px;padding:10px 13px;border-radius:var(--r);font-size:12px;line-height:1.6;font-weight:400}
+.qfb.show{display:block;animation:fadeUp .2s ease both}
+.qfb.correct{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);color:#5DDBB5}
+.qfb.wrong{background:rgba(244,63,94,.06);border:1px solid rgba(244,63,94,.2);color:#fb7185}
+.qdoc{margin-top:6px;font-size:10px;font-family:var(--mono)}
+.qdoc a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-bd);transition:color .3s}
+.qfoot{display:flex;gap:7px;margin-top:11px}
+.rescrd{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:36px 22px;text-align:center}
+.rsc-n{font-family:var(--mono);font-size:56px;font-weight:700;line-height:1;margin-bottom:4px}
+.rsc-l{font-size:12px;color:var(--t2);margin-bottom:20px}
+.rsc-g{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:280px;margin:0 auto 20px}
+.rsc-s{background:var(--s2);border-radius:var(--r);padding:11px}
+.rsc-sn{font-size:18px;font-weight:700;font-family:var(--mono)}
+.rsc-sl{font-size:9px;color:var(--t3);margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+
+/* cheat sheet */
+.cheat-sec{margin-bottom:22px}
+.cheat-ttl{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--bd);transition:color .3s}
+.ctable{width:100%;border-collapse:collapse}
+.ctable th{text-align:left;font-size:9px;font-family:var(--mono);color:var(--t3);text-transform:uppercase;letter-spacing:.1em;padding:6px 9px;background:var(--s2);border:1px solid var(--bd)}
+.ctable td{padding:7px 9px;font-size:11px;border:1px solid var(--bd);background:var(--s1);color:var(--t1);vertical-align:top;line-height:1.5;font-weight:400}
+.ctable tr:hover td{background:var(--s2)}
+.ckey{color:var(--acc);font-family:var(--mono);font-size:10px;font-weight:700;transition:color .3s}
+.dbadge{font-size:9px;font-family:var(--mono);color:var(--acc);border:1px solid var(--acc-bd);border-radius:3px;padding:1px 5px;margin-left:4px;text-decoration:none;opacity:.65;transition:opacity .15s,color .3s}
+.dbadge:hover{opacity:1}
+
+/* plan */
+.plan-g{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:12px}
+@media(max-width:540px){.plan-g{grid-template-columns:1fr}}
+.pday{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:14px}
+.pday-lbl{font-family:var(--mono);font-size:9px;color:var(--acc);text-transform:uppercase;letter-spacing:.14em;margin-bottom:9px;transition:color .3s}
+.ptask{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--bd);font-size:11px;font-weight:400;color:var(--t2);cursor:pointer;transition:color .15s}
+.ptask:last-child{border-bottom:none}
+.ptask:hover{color:var(--t1)}
+.pcheck{width:13px;height:13px;border:1px solid var(--bd2);border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+.ptask.done .pcheck{background:var(--acc);border-color:var(--acc)}
+.ptask.done .pcheck::after{content:"✓";font-size:8px;color:#000}
+.ptask.done .ptask-text{text-decoration:line-through;color:var(--t3)}
+
+/* resources */
+.res-sec{font-family:var(--mono);font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.13em;margin:18px 0 9px;padding-bottom:5px;border-bottom:1px solid var(--bd)}
+.res-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px}
+.rcard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:14px;text-decoration:none;display:block;transition:border-color .2s,transform .2s}
+.rcard:hover{border-color:var(--bd2);transform:translateY(-2px)}
+.rcard-type{font-family:var(--mono);font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.rcard-title{font-size:12px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.rcard-desc{font-size:11px;color:var(--t2);line-height:1.5;font-weight:400}
+.rcard-tag{display:inline-block;margin-top:7px;font-size:9px;font-family:var(--mono);padding:2px 6px;border-radius:3px;background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc-bd);transition:all .3s}
+
+.hub-footer{text-align:center;padding:14px 20px;font-family:var(--mono);font-size:9px;color:var(--t3);border-top:1px solid var(--bd);position:relative;z-index:1;letter-spacing:.06em}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--s3);border-radius:3px}
+.stab-updates{position:relative}
+.stab-updates::after{content:"AI";position:absolute;top:6px;right:2px;font-size:7px;font-family:var(--mono);background:#0066FF;color:#fff;padding:1px 4px;border-radius:3px;letter-spacing:.05em}
+.update-card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:20px;margin-bottom:14px}
+.update-card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.update-badge{font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:4px;background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc-bd);text-transform:uppercase;letter-spacing:.1em}
+.update-date{font-family:var(--mono);font-size:10px;color:var(--t3)}
+.update-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.update-body{font-size:12px;color:var(--t2);line-height:1.65;font-weight:400}
+.ai-checker{background:var(--s2);border:1px solid var(--acc-bd);border-radius:var(--rl);padding:20px;margin-bottom:20px}
+.ai-checker-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.ai-checker-desc{font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.55}
+.ai-response{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:14px;margin-top:12px;font-size:12px;color:var(--t2);line-height:1.7;display:none}
+.ai-response.show{display:block;animation:fadeUp .3s ease both}
+.ai-thinking{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--acc)}
+.ai-thinking-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 1s infinite}
+.ai-thinking-dot:nth-child(2){animation-delay:.2s}
+.ai-thinking-dot:nth-child(3){animation-delay:.4s}
+.cert-select-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ai-output-text{white-space:pre-wrap}
+.kbd-hint{position:fixed;bottom:16px;right:16px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--r);padding:8px 12px;font-family:var(--mono);font-size:9px;color:var(--t3);z-index:300;display:none;gap:8px;flex-wrap:wrap}
+.kbd-hint.show{display:flex}
+.kbd-key{background:var(--s3);border:1px solid var(--bd2);border-radius:4px;padding:1px 6px;color:var(--t2)}
+.streak-bar{background:var(--s2);border-bottom:1px solid var(--bd);padding:6px 20px;display:none;align-items:center;gap:12px;font-size:11px;position:sticky;top:46px;z-index:150}
+.streak-bar.show{display:flex}
+.streak-item{font-family:var(--mono);font-size:10px;color:var(--t3);display:flex;align-items:center;gap:5px}
+.streak-dot{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.streak-val{color:var(--t1);font-weight:700}
+</style>
+</head>
+<body>
+
+<div id="landing">
+  <div class="land-blob"></div>
+  <div class="land-badge"><div class="land-dot"></div><span>Microsoft Azure · Fundamentals Certifications</span></div>
+  <div class="land-title">Azure<br><em>Fundamentals Hub</em></div>
+  <p class="land-sub">One platform to prepare, practice and pass all three Microsoft Azure Fundamentals certifications. Choose your exam below.</p>
+  <div class="cert-picker">
+    <div class="cc cc-az" onclick="loadCert('az')">
+      <div class="cc-code">AZ-900</div>
+      <div class="cc-name">Azure Fundamentals</div>
+      <div class="cc-desc">Cloud concepts, Azure architecture, services, identity, and governance. The essential entry point to Azure.</div>
+      <div class="cc-pills"><span class="cc-pill">Cloud concepts</span><span class="cc-pill">Azure services</span><span class="cc-pill">Governance</span></div>
+      <button class="cc-cta">Prepare now →</button>
+    </div>
+    <div class="cc cc-dp" onclick="loadCert('dp')">
+      <div class="cc-code">DP-900</div>
+      <div class="cc-name">Azure Data Fundamentals</div>
+      <div class="cc-desc">Core data concepts, relational and non-relational databases, and analytics workloads on Azure.</div>
+      <div class="cc-pills"><span class="cc-pill">Data concepts</span><span class="cc-pill">Relational data</span><span class="cc-pill">Analytics</span></div>
+      <button class="cc-cta">Prepare now →</button>
+    </div>
+    <div class="cc cc-ai" onclick="loadCert('ai')">
+      <div class="retire-pill">⚠ Retires June 30, 2026</div>
+      <div class="cc-code">AI-900</div>
+      <div class="cc-name">Azure AI Fundamentals</div>
+      <div class="cc-desc">Machine learning, computer vision, NLP, and generative AI on Azure. Act soon - retiring mid-2026.</div>
+      <div class="cc-pills"><span class="cc-pill">ML concepts</span><span class="cc-pill">Computer vision</span><span class="cc-pill">Generative AI</span></div>
+      <button class="cc-cta">Prepare now →</button>
+    </div>
+  </div>
+</div>
+
+<div id="hub">
+  <div class="topbar">
+    <div class="tb-brand" onclick="goHome()"><div class="tb-brand-code" id="brand-code">AZ-900</div><div class="tb-brand-sub">Study Hub</div></div>
+    <div class="cert-switcher">
+      <button class="ctab az" onclick="loadCert('az')" id="ctab-az">AZ-900</button>
+      <button class="ctab dp" onclick="loadCert('dp')" id="ctab-dp">DP-900</button>
+      <button class="ctab ai" onclick="loadCert('ai')" id="ctab-ai">AI-900</button>
+    </div>
+    <div class="sec-tabs" id="sec-tabs">
+      <button class="stab active" onclick="switchTab('overview',this)">Overview</button>
+      <button class="stab" onclick="switchTab('flashcards',this)">Flashcards</button>
+      <button class="stab" onclick="switchTab('quiz',this)">Quiz</button>
+      <button class="stab" onclick="switchTab('cheatsheet',this)">Cheat Sheet</button>
+      <button class="stab" onclick="switchTab('plan',this)">Study Plan</button>
+      <button class="stab" onclick="switchTab('resources',this)">Resources</button>
+      <button class="stab stab-updates" onclick="switchTab('updates',this)">AI Updates</button>
+    </div>
+    <button class="back-btn" onclick="goHome()">← All certs</button>
+  </div>
+  <div class="streak-bar" id="streak-bar">
+    <div class="streak-item"><div class="streak-dot"></div>Cert: <span class="streak-val" id="streak-cert">AZ-900</span></div>
+    <div class="streak-item"><div class="streak-dot" style="background:#00B37E"></div>Quiz best: <span class="streak-val" id="streak-quiz">-</span></div>
+    <div class="streak-item"><div class="streak-dot" style="background:#9B7DFF"></div>Cards done: <span class="streak-val" id="streak-cards">0</span></div>
+    <div class="streak-item"><div class="streak-dot" style="background:#F59E0B"></div>Tasks: <span class="streak-val" id="streak-tasks">0</span></div>
+  </div>
+  <main>
+    <div id="p-overview" class="panel active"></div>
+    <div id="p-flashcards" class="panel"></div>
+    <div id="p-quiz" class="panel"></div>
+    <div id="p-cheatsheet" class="panel"></div>
+    <div id="p-plan" class="panel"></div>
+    <div id="p-resources" class="panel"></div>
+    <div id="p-updates" class="panel"></div>
+  </main>
+  <div class="hub-footer" id="hub-footer"></div>
+</div>
+
+<script>
+const CERTS={
+az:{code:"AZ-900",name:"Azure Fundamentals",color:"#0066FF",bg:"rgba(0,102,255,.1)",bd:"rgba(0,102,255,.28)",retire:false,
+  stats:"40–60 questions · 45 minutes · 700/1000 to pass · No expiry",
+  tagline:"Cloud concepts, architecture, services & governance · Updated Jan 2026",
+  tags:["25–30% Cloud concepts","35–40% Architecture & services","30–35% Management & governance"],
+  regSteps:[
+    'Sign in at <a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a>',
+    'Go to the <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" target="_blank">AZ-900 certification page</a> → "Schedule exam" via Pearson VUE (online or test centre)',
+    'Take the free <a href="https://learn.microsoft.com/en-us/credentials/certifications/exams/az-900/practice/assessment?assessment-type=practice&assessmentId=23" target="_blank">Microsoft Official Practice Assessment</a> before booking',
+    'Work through the free MS Learn paths: <a href="https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/" target="_blank">Cloud Concepts</a> · <a href="https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/" target="_blank">Architecture & Services</a> · <a href="https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/" target="_blank">Management & Governance</a>',
+    'Preview the exam UI: <a href="https://aka.ms/examdemo" target="_blank">aka.ms/examdemo</a>',
+  ],
+  domains:[
+    {pct:"25–30%",name:"1 - Cloud concepts",chips:["Define cloud computing","Shared responsibility model","Public/Private/Hybrid cloud","Consumption-based model","Serverless","High availability","Scalability & Elasticity","Reliability & predictability","IaaS / PaaS / SaaS use cases"]},
+    {pct:"35–40%",name:"2 - Azure architecture & services",chips:["Regions & region pairs","Availability zones","Resource groups","Subscriptions","Management groups","VMs & Scale Sets","App Service","Azure Functions","Container Instances / AKS","Virtual Network","VPN Gateway","ExpressRoute","Blob / Files / Disks","Storage tiers & redundancy","Azure Migrate / Data Box","Entra ID (Azure AD)","SSO / MFA / Passwordless","Conditional Access","RBAC","Zero Trust","Defense-in-depth","Defender for Cloud"]},
+    {pct:"30–35%",name:"3 - Management & governance",chips:["Pricing Calculator","TCO Calculator","Cost Management","Tags","Microsoft Purview ★","Azure Policy","Resource Locks","Azure Portal / CLI","Azure Arc ★","IaC & ARM templates ★","Azure Advisor","Service Health","Azure Monitor / Log Analytics"]},
+  ],
+  highlights:[
+    {t:"Scalability vs Elasticity",b:"Scalability = increase capacity to handle load. Elasticity = auto-scale both UP and DOWN based on demand."},
+    {t:"Azure Policy vs RBAC vs Resource Locks",b:"Policy = enforce rules on resources. RBAC = control who can do what. Locks = prevent deletion or modification."},
+    {t:"Pricing vs TCO Calculator",b:"Pricing Calculator = estimate future Azure costs. TCO Calculator = compare current on-premises cost vs migrating to Azure."},
+    {t:"Jan 2026 additions to syllabus",b:"Microsoft Purview, Azure Arc, IaC/ARM templates, Zero Trust and Defense-in-depth are newly explicit objectives."},
+  ],
+  flashcards:[
+    {cat:"concepts",q:"What is IaaS? Give an Azure example.",a:"Infrastructure as a Service - you manage OS, runtime, app, and data. Azure manages hardware and hypervisor. Example: Azure Virtual Machines.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service"},
+    {cat:"concepts",q:"What is PaaS? Give an Azure example.",a:"Platform as a Service - Azure manages OS and runtime; you manage app and data. Example: Azure App Service, Azure SQL Database.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/3-describe-platform-service"},
+    {cat:"concepts",q:"What is SaaS? Give an Azure example.",a:"Software as a Service - Azure manages everything; you just use the application. Example: Microsoft 365, Dynamics 365.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/4-describe-software-service"},
+    {cat:"concepts",q:"What is CapEx vs OpEx in cloud?",a:"CapEx = upfront hardware purchase (on-premises model). OpEx = ongoing pay-as-you-go costs. Moving to cloud converts IT from CapEx to OpEx.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-describe-consumption-based-model"},
+    {cat:"concepts",q:"What is the Shared Responsibility Model?",a:"Microsoft always owns physical security and hardware. You always own data and identities. OS and network responsibility shifts: IaaS (you), PaaS (shared), SaaS (Microsoft).",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-describe-shared-responsibility-model"},
+    {cat:"concepts",q:"Scalability vs Elasticity - what is the key difference?",a:"Scalability = increase capacity to handle more load. Elasticity = automatically scale both UP when demand rises and DOWN when it falls.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/2-high-availability-scalability-cloud"},
+    {cat:"services",q:"What is an Availability Zone?",a:"Physically separate datacentres within an Azure region, each with independent power and cooling. Used to achieve high availability.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/5-describe-azure-physical-infrastructure"},
+    {cat:"services",q:"What is Azure ExpressRoute?",a:"A private dedicated connection between on-premises infrastructure and Azure - does NOT use the public internet. More secure and reliable than a VPN.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/11-expressroute"},
+    {cat:"services",q:"What is Zero Trust?",a:"A security model: never trust, always verify. Assume breach by default - every access request is authenticated and authorised regardless of its origin.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model"},
+    {cat:"services",q:"What is Microsoft Entra ID (formerly Azure AD)?",a:"Microsoft's cloud identity service. Provides SSO, MFA, passwordless authentication, Conditional Access, and external identities (B2B/B2C).",doc:"https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/2-directory-services"},
+    {cat:"governance",q:"What does Azure Policy do?",a:"Enforces organisational rules on Azure resources - e.g. All VMs must be in UK South. Non-compliant resources are flagged or blocked.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/3-azure-policy"},
+    {cat:"governance",q:"What are the two Resource Lock types?",a:"ReadOnly = read only, no modifications or deletions. CanNotDelete = can read and modify but cannot delete. Locks override user permissions.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-resource-locks"},
+    {cat:"governance",q:"What is Azure Advisor?",a:"A free personalised consultant analysing actual usage and giving recommendations across 5 pillars: Cost, Security, Reliability, Operational Excellence, and Performance.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor"},
+    {cat:"governance",q:"What is Azure Arc?",a:"Extends Azure management (Policy, RBAC, Monitor, Defender) to servers, Kubernetes clusters, and databases running outside Azure - on-premises or other clouds.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/3-describe-purpose-of-azure-arc"},
+    {cat:"governance",q:"What is Microsoft Purview?",a:"A data governance and compliance service - discovers, classifies, labels, and protects data across on-premises, Azure, and other cloud environments.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/2-microsoft-purview"},
+  ],
+  fcCats:["concepts","services","governance"],
+  fcCatLabels:{concepts:"Cloud concepts",services:"Azure services",governance:"Governance"},
+  quiz:[
+    {q:"Which cloud model gives you the LEAST management responsibility?",opts:["IaaS","PaaS","SaaS","On-premises"],ans:2,exp:"SaaS is fully managed - Microsoft handles everything from hardware to the application. You just use it.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/"},
+    {q:"Moving from buying servers to a monthly cloud bill is a shift from what to what?",opts:["CapEx to OpEx","OpEx to CapEx","CapEx to CapEx","OpEx to OpEx"],ans:0,exp:"CapEx = upfront hardware purchase. Cloud = OpEx (ongoing pay-as-you-go). Cloud converts IT spending from capital to operational.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-describe-consumption-based-model"},
+    {q:"Which Azure feature provides physically separate datacentres within a region for high availability?",opts:["Azure Regions","Resource Groups","Availability Zones","Management Groups"],ans:2,exp:"Availability Zones are physically separate datacentres in a region with independent power, cooling, and networking.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/5-describe-azure-physical-infrastructure"},
+    {q:"Which tool estimates cost savings of migrating from on-premises to Azure?",opts:["Pricing Calculator","Cost Management","TCO Calculator","Azure Advisor"],ans:2,exp:"The TCO (Total Cost of Ownership) Calculator compares on-premises infrastructure costs against equivalent Azure services.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/3-compare-pricing-total-cost-of-ownership-calculators"},
+    {q:"You need to prevent accidental deletion of a production database. What do you apply?",opts:["Azure Policy","RBAC Reader role","Resource Lock - CanNotDelete","Resource Tag"],ans:2,exp:"A CanNotDelete Resource Lock prevents deletion even if the user has the permission to delete - it overrides role permissions.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-resource-locks"},
+    {q:"What is the key difference between scalability and elasticity?",opts:["They are the same","Scalability = adding VMs only","Scalability = increasing capacity; elasticity = auto-scaling both up AND down","Scalability = compute only"],ans:2,exp:"Scalability = increasing capacity to handle load. Elasticity = automatically scaling resources up when demand rises and down when it drops.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/2-high-availability-scalability-cloud"},
+    {q:"Which service extends Azure management to on-premises servers and Kubernetes outside Azure?",opts:["Azure Policy","Azure Arc","Azure Migrate","Management Groups"],ans:1,exp:"Azure Arc lets you manage on-premises and multi-cloud resources from the Azure portal using the same governance tools.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/3-describe-purpose-of-azure-arc"},
+    {q:"What is Zero Trust?",opts:["Trust internal network users","Never trust, always verify - assume breach and validate every request","Only secure external traffic","MFA only"],ans:1,exp:"Zero Trust assumes breach and verifies every access request regardless of whether it comes from inside or outside the network.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model"},
+    {q:"Which tool gives personalised recommendations on cost, security, and reliability based on actual usage?",opts:["Azure Monitor","Azure Advisor","Service Health","Azure Policy"],ans:1,exp:"Azure Advisor analyses actual resource usage and gives actionable recommendations across 5 pillars.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor"},
+    {q:"What is Microsoft ALWAYS responsible for under the Shared Responsibility Model?",opts:["OS patches","Application data","Physical datacenter and hardware security","Network config"],ans:2,exp:"Microsoft is always responsible for physical datacentres, hardware, and underlying network infrastructure.",doc:"https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-describe-shared-responsibility-model"},
+  ],
+  cheatHTML:`<div class="cheat-sec"><div class="cheat-ttl">Service models <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Model</th><th>You manage</th><th>Azure manages</th><th>Example</th></tr></thead><tbody><tr><td><span class="ckey">IaaS</span></td><td>OS, runtime, app, data</td><td>Hardware, hypervisor</td><td>Azure VMs</td></tr><tr><td><span class="ckey">PaaS</span></td><td>App, data</td><td>OS, runtime, middleware</td><td>App Service, Azure SQL</td></tr><tr><td><span class="ckey">SaaS</span></td><td>Your data only</td><td>Everything</td><td>Microsoft 365</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Governance tools <a class="dbadge" href="https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Tool</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td><span class="ckey">Azure Policy</span></td><td>Enforce rules on resources</td><td>"All VMs must be in UK South"</td></tr><tr><td><span class="ckey">RBAC</span></td><td>Who can do what on which resources</td><td>Dev team = Reader on production</td></tr><tr><td><span class="ckey">Resource Locks</span></td><td>Prevent change or deletion</td><td>CanNotDelete on prod DB</td></tr><tr><td><span class="ckey">Azure Arc</span></td><td>Extend Azure mgmt outside Azure</td><td>Manage on-prem servers from portal</td></tr><tr><td><span class="ckey">Microsoft Purview</span></td><td>Data governance & compliance</td><td>Classify data across hybrid cloud</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Cost & monitoring <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td><span class="ckey">Pricing Calculator</span></td><td>Estimate future Azure costs before deployment</td></tr><tr><td><span class="ckey">TCO Calculator</span></td><td>Compare on-premises cost vs Azure</td></tr><tr><td><span class="ckey">Azure Advisor</span></td><td>Personalised recommendations: Cost, Security, Reliability, Performance, Ops Excellence</td></tr><tr><td><span class="ckey">Azure Monitor</span></td><td>Metrics, Log Analytics, Alerts, Application Insights</td></tr><tr><td><span class="ckey">Service Health</span></td><td>Azure outages, maintenance, advisories for your subscriptions</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Key concepts</div><table class="ctable"><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody><tr><td><span class="ckey">CapEx</span></td><td>Upfront hardware purchase. On-premises.</td></tr><tr><td><span class="ckey">OpEx</span></td><td>Pay-as-you-go ongoing cost. Cloud model.</td></tr><tr><td><span class="ckey">Elasticity</span></td><td>Auto-scale up AND down on demand.</td></tr><tr><td><span class="ckey">Zero Trust</span></td><td>Never trust, always verify - assume breach.</td></tr><tr><td><span class="ckey">Defense-in-depth</span></td><td>Layered security: Physical → Identity → Perimeter → Network → Compute → App → Data.</td></tr><tr><td><span class="ckey">SLA</span></td><td>Uptime guarantee. 99.9% ≈ 8.7 hrs downtime/yr. Composite = multiply individual SLAs.</td></tr></tbody></table></div>`,
+  planDays:[
+    {label:"Day 1 - Morning",tasks:["Review Domain 1 (Cloud concepts) in the Overview tab","Complete all Cloud concepts flashcards","Study IaaS/PaaS/SaaS and shared responsibility","Explore the Azure Pricing Calculator hands-on"]},
+    {label:"Day 1 - Afternoon",tasks:["Review Domain 2 (Architecture & services)","Complete all Azure services flashcards","Focus on regions, AZs, identity, Zero Trust","Watch John Savill AZ-900 playlist on YouTube"]},
+    {label:"Day 2 - Morning",tasks:["Review Domain 3 (Management & governance)","Complete all Governance flashcards","Study Purview, Arc, IaC/ARM, and monitoring","Explore TCO Calculator hands-on"]},
+    {label:"Day 2 - Afternoon",tasks:["Take the practice quiz (do it twice)","Review every wrong answer + read docs link","Complete Microsoft official practice assessment","Read the cheat sheet once fully"]},
+  ],
+  examDay:["Good night's sleep before the exam","Log in / arrive 15 minutes early","Read carefully - watch for NOT/EXCEPT","Flag uncertain questions, return to them","700/1000 to pass (≈70% correct)","Composite SLA = multiply individual SLAs","Trust your preparation"],
+  resources:{
+    official:[
+      {t:"🏆 Cert page",n:"AZ-900 Official Certification Page",d:"Schedule exam, view Jan 2026 skills, access study guide.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/"},
+      {t:"✅ Practice test",n:"Microsoft Official Practice Assessment",d:"~50 questions with explanations. Closest to the real exam.",tag:"Free · Highly recommended",u:"https://learn.microsoft.com/en-us/credentials/certifications/exams/az-900/practice/assessment?assessment-type=practice&assessmentId=23"},
+      {t:"📖 Learning path",n:"MS Learn: Cloud Concepts",d:"Domain 1 - cloud computing, service types, shared responsibility.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/"},
+      {t:"📖 Learning path",n:"MS Learn: Architecture & Services",d:"Domain 2 - regions, compute, networking, storage, identity.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/"},
+      {t:"📖 Learning path",n:"MS Learn: Management & Governance",d:"Domain 3 - cost tools, Purview, Arc, ARM, monitoring.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"},
+      {t:"🖥️ Exam sandbox",n:"Exam Interface Sandbox",d:"Explore the actual exam UI before test day.",tag:"Free · Official",u:"https://aka.ms/examdemo"},
+    ],
+    youtube:[
+      {t:"🎥 Playlist · 65 videos",n:"John Savill - AZ-900 Full Course",d:"Updated Apr 2025. Clear diagrams, free PDF handout. Rated #1 free resource.",tag:"Free · 13+ hrs · Top rated",u:"https://www.youtube.com/playlist?list=PLlVtbbG169nED0_vMEniWBQjSoxTsBYS3"},
+      {t:"🎥 Full course",n:"freeCodeCamp - AZ-900 Course",d:"Comprehensive 8-hour video, great for visual learners.",tag:"Free · 8 hours",u:"https://www.youtube.com/watch?v=5abffC-K40c"},
+      {t:"🎥 Exam cram",n:"AZ-900 Exam Cram",d:"Fast-paced run through all objectives. Great for final-day review.",tag:"Free · Exam cram",u:"https://www.youtube.com/watch?v=8n-kWJetQRk"},
+    ],
+    tools:[
+      {t:"🧮 Azure tool",n:"Pricing Calculator",d:"Estimate cost of Azure services before deploying.",tag:"Free · Hands-on",u:"https://azure.microsoft.com/en-us/pricing/calculator/"},
+      {t:"🧮 Azure tool",n:"TCO Calculator",d:"Compare on-premises costs vs Azure equivalents.",tag:"Free · Hands-on",u:"https://azure.microsoft.com/en-us/pricing/tco/calculator/"},
+      {t:"☁️ Free account",n:"Azure Free Account",d:"Explore the portal hands-on with real services.",tag:"Free · £200 credit",u:"https://azure.microsoft.com/en-gb/free/"},
+    ],
+  },
+},
+
+dp:{code:"DP-900",name:"Azure Data Fundamentals",color:"#00B37E",bg:"rgba(0,179,126,.1)",bd:"rgba(0,179,126,.28)",retire:false,
+  stats:"40–60 questions · 60 minutes · 700/1000 to pass · No expiry",
+  tagline:"Core data concepts, relational & non-relational data, analytics workloads on Azure",
+  tags:["25–30% Core data concepts","20–25% Relational data","15–20% Non-relational data","25–30% Analytics workloads"],
+  regSteps:[
+    'Sign in at <a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a>',
+    'Go to the <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-data-fundamentals/" target="_blank">DP-900 certification page</a> → "Schedule exam" via Pearson VUE',
+    'Take the free <a href="https://learn.microsoft.com/en-us/credentials/certifications/exams/dp-900/practice/assessment?assessment-type=practice&assessmentId=24" target="_blank">Microsoft Official Practice Assessment</a> before booking',
+    'Work through the free MS Learn paths: <a href="https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-core-data-concepts/" target="_blank">Core Data Concepts</a> · <a href="https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-relational-data/" target="_blank">Relational Data</a> · <a href="https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-non-relational-data/" target="_blank">Non-relational & Analytics</a>',
+    'Preview the exam UI: <a href="https://aka.ms/examdemo" target="_blank">aka.ms/examdemo</a>',
+  ],
+  domains:[
+    {pct:"25–30%",name:"1 - Core data concepts",chips:["Structured/semi-structured/unstructured data","Relational vs non-relational databases","OLTP vs OLAP workloads","Batch vs streaming data","Data roles: DBA, Data Engineer, Data Analyst","Common file formats: CSV, JSON, Parquet, Avro","Data lake vs data warehouse vs lakehouse"]},
+    {pct:"20–25%",name:"2 - Relational data on Azure",chips:["Tables, columns, rows, primary/foreign keys","Normalisation","DDL vs DML","Views, stored procedures, indexes","Azure SQL Database","Azure SQL Managed Instance","SQL Server on Azure VMs","Azure Database for PostgreSQL / MySQL / MariaDB"]},
+    {pct:"15–20%",name:"3 - Non-relational data on Azure",chips:["Key-value stores","Document databases","Column-family databases","Graph databases","Azure Cosmos DB (SQL, MongoDB, Cassandra, Gremlin, Table APIs)","Azure Table Storage","Azure Blob Storage","Azure Data Lake Storage Gen2"]},
+    {pct:"25–30%",name:"4 - Analytics workloads on Azure",chips:["Data warehouse vs data lake vs lakehouse","ETL vs ELT","Azure Synapse Analytics","Dedicated & serverless SQL pools","Apache Spark in Synapse","Azure Data Factory","Microsoft Fabric","Azure Databricks","Power BI: datasets, reports, dashboards","Power BI Desktop vs Power BI Service"]},
+  ],
+  highlights:[
+    {t:"OLTP vs OLAP",b:"OLTP = transactional workloads - many fast INSERT/UPDATE/DELETE operations (e.g. sales system). OLAP = analytical workloads - aggregation and reporting over large datasets (e.g. data warehouse)."},
+    {t:"Which Cosmos DB API to use",b:"SQL/Core = JSON documents. MongoDB = document model. Cassandra = column-family. Gremlin = graph (vertices & edges). Table = key-value. Know the use case for each."},
+    {t:"ETL vs ELT",b:"ETL = transform data BEFORE loading into destination (traditional). ELT = load raw data first, THEN transform in the destination (modern cloud approach used in data lakes)."},
+    {t:"Synapse vs Fabric vs Databricks",b:"Azure Synapse = unified SQL+Spark+pipelines analytics platform. Microsoft Fabric = newer SaaS end-to-end analytics platform. Databricks = advanced Apache Spark platform for ML and data engineering."},
+  ],
+  flashcards:[
+    {cat:"concepts",q:"What is the difference between OLTP and OLAP?",a:"OLTP (Online Transaction Processing) = handles many fast small transactions, e.g. sales or booking systems. OLAP (Online Analytical Processing) = optimised for aggregation and reporting over large datasets, e.g. a data warehouse.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/4-describe-data-workloads"},
+    {cat:"concepts",q:"What are the three types of data?",a:"Structured = fixed schema in tables (SQL databases). Semi-structured = flexible schema (JSON, XML, YAML). Unstructured = no schema - images, video, audio, documents, log files.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"},
+    {cat:"concepts",q:"What is the difference between batch and streaming data processing?",a:"Batch = data collected and processed in groups at scheduled intervals (e.g. nightly reports). Streaming = data processed continuously in real-time as it arrives (e.g. IoT sensors, financial ticks).",doc:"https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/3-data-collection"},
+    {cat:"concepts",q:"What are the three main data roles?",a:"Database Administrator (DBA) = manages databases, security, backups, and availability. Data Engineer = builds and maintains data pipelines and infrastructure. Data Analyst = queries and visualises data for business insights.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/"},
+    {cat:"concepts",q:"What is a data warehouse vs a data lake vs a data lakehouse?",a:"Data warehouse = structured, schema-on-write, optimised for SQL reporting. Data lake = raw unstructured/structured data, schema-on-read. Data lakehouse = combines both - raw storage like a lake with SQL analytics like a warehouse.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {cat:"relational",q:"What is normalisation?",a:"The process of organising relational tables to reduce data redundancy and improve integrity. Each piece of data is stored once; relationships are maintained via primary and foreign keys.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-relational-data-offerings/2-relational-data"},
+    {cat:"relational",q:"What is the difference between DDL and DML?",a:"DDL (Data Definition Language) = defines structure: CREATE TABLE, ALTER TABLE, DROP. DML (Data Manipulation Language) = manipulates data: SELECT, INSERT, UPDATE, DELETE.",doc:"https://learn.microsoft.com/en-us/training/modules/query-relational-data/"},
+    {cat:"relational",q:"When would you use Azure SQL Managed Instance instead of Azure SQL Database?",a:"Managed Instance has near-100% SQL Server compatibility. Use it when migrating existing on-premises SQL Server apps that need instance-level features like SQL Agent, CLR, linked servers, or cross-database queries.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-provision-deploy-relational-database-offerings-azure/"},
+    {cat:"nonrel",q:"What is Azure Cosmos DB and what APIs does it support?",a:"Microsoft's globally distributed, multi-model NoSQL database with single-digit ms latency. APIs: SQL/Core (JSON), MongoDB (documents), Cassandra (column-family), Gremlin (graph), Table (key-value).",doc:"https://learn.microsoft.com/en-us/training/modules/explore-non-relational-data-offerings-azure/"},
+    {cat:"nonrel",q:"What is Azure Data Lake Storage Gen2?",a:"A cloud data lake built on Azure Blob Storage with a hierarchical file system namespace. Used for storing massive amounts of raw analytical data at low cost before processing with Spark or SQL.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-non-relational-data-offerings-azure/"},
+    {cat:"analytics",q:"What is Azure Synapse Analytics?",a:"A unified analytics platform combining dedicated SQL pools (data warehouse), serverless SQL (query data lake on-demand), and Apache Spark pools - all in one service.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {cat:"analytics",q:"What is the difference between ETL and ELT?",a:"ETL (Extract, Transform, Load) = transform before loading - traditional approach. ELT (Extract, Load, Transform) = load raw data first, then transform in the destination - modern cloud/data lake approach.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {cat:"analytics",q:"What is Azure Data Factory?",a:"A cloud ETL/ELT orchestration service for building data pipelines that ingest, transform, and move data between sources and destinations at scale.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {cat:"analytics",q:"What is the difference between a Power BI Report and a Dashboard?",a:"Report = multi-page, detailed view built from one dataset - interactive visuals. Dashboard = single-page, pinned tiles from multiple reports/datasets - high-level overview, not directly interactive.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-of-data-visualization/"},
+    {cat:"analytics",q:"What is Microsoft Fabric?",a:"A newer end-to-end SaaS analytics platform from Microsoft. Combines data engineering, data science, real-time analytics, and Power BI in one unified platform - an evolution of Synapse Analytics.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+  ],
+  fcCats:["concepts","relational","nonrel","analytics"],
+  fcCatLabels:{concepts:"Data concepts",relational:"Relational",nonrel:"Non-relational",analytics:"Analytics"},
+  quiz:[
+    {q:"A point-of-sale system records thousands of individual purchases per minute. What type of workload is this?",opts:["OLAP","Batch processing","OLTP","Data warehousing"],ans:2,exp:"OLTP (Online Transaction Processing) handles many fast transactional operations - sales, bookings, banking. OLAP is for analytical reporting over large datasets.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/4-describe-data-workloads"},
+    {q:"Which data format allows different records in the same dataset to have different fields?",opts:["Structured (SQL table)","Semi-structured (JSON/XML)","Unstructured (image)","Columnar (Parquet)"],ans:1,exp:"Semi-structured data (like JSON or XML) has some structure but is flexible - different records can have different fields.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"},
+    {q:"Which Azure SQL service is best for a brand-new cloud-native application needing a fully managed PaaS database?",opts:["SQL Server on Azure VMs","Azure SQL Managed Instance","Azure SQL Database","Azure Database for PostgreSQL"],ans:2,exp:"Azure SQL Database is fully managed PaaS - no server maintenance. Ideal for new cloud-native apps. SQL Managed Instance is for migrating existing SQL Server apps needing instance-level features.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-provision-deploy-relational-database-offerings-azure/"},
+    {q:"A team migrating an on-premises SQL Server app that uses SQL Agent jobs and cross-database queries. Which service fits best?",opts:["Azure SQL Database","Azure SQL Managed Instance","Azure Cosmos DB","Azure Table Storage"],ans:1,exp:"Azure SQL Managed Instance has near-100% SQL Server compatibility, supporting SQL Agent, CLR, linked servers, and cross-database queries - ideal for lift-and-shift migrations.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-provision-deploy-relational-database-offerings-azure/"},
+    {q:"Which Azure Cosmos DB API should you use to store and traverse relationship graphs?",opts:["SQL/Core API","MongoDB API","Cassandra API","Gremlin API"],ans:3,exp:"Gremlin API is for graph databases - storing entities as vertices and relationships as edges. Used for social networks, recommendation engines, and fraud detection.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-non-relational-data-offerings-azure/"},
+    {q:"What is the key difference between ETL and ELT?",opts:["ETL loads first; ELT transforms first","ETL transforms before loading; ELT loads raw data first then transforms","They are the same thing","ETL is for batch; ELT is for streaming only"],ans:1,exp:"ETL = transform then load (traditional). ELT = load raw data first, transform in destination (modern cloud approach using data lakes and tools like Synapse).",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {q:"Which Azure service is a unified analytics platform combining SQL pools, Spark pools, and data pipelines?",opts:["Azure Data Factory","Microsoft Fabric","Azure Synapse Analytics","Azure Databricks"],ans:2,exp:"Azure Synapse Analytics is the unified platform - it combines dedicated SQL pools (data warehouse), serverless SQL, Apache Spark, and data pipeline orchestration.",doc:"https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/"},
+    {q:"What is the difference between a Power BI report and a Power BI dashboard?",opts:["They are the same","Report = single page; dashboard = multi-page","Report = detailed multi-page interactive view; dashboard = single-page pinned tiles overview","Dashboard = built from one dataset; report = built from many"],ans:2,exp:"Report = multi-page, detailed, interactive view built from one dataset. Dashboard = single-page, pinned tiles from multiple reports - high-level overview, not directly interactive.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-of-data-visualization/"},
+    {q:"A company needs to store millions of customer profile documents where each document may have different fields. Which Azure service fits best?",opts:["Azure SQL Database","Azure Table Storage","Azure Cosmos DB (SQL/Core API)","Azure Synapse Analytics"],ans:2,exp:"Azure Cosmos DB SQL/Core API stores JSON documents and handles flexible, varying schemas at massive scale with global distribution and single-digit ms latency.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-non-relational-data-offerings-azure/"},
+    {q:"Which role is primarily responsible for building and maintaining data pipelines and infrastructure?",opts:["Database Administrator","Data Analyst","Data Engineer","Data Scientist"],ans:2,exp:"Data Engineers build and maintain data pipelines, data lakes, and infrastructure. DBAs manage database security and backups. Data Analysts query and visualise data for business insights.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/"},
+  ],
+  cheatHTML:`<div class="cheat-sec"><div class="cheat-ttl">OLTP vs OLAP <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/4-describe-data-workloads" target="_blank">docs</a></div><table class="ctable"><thead><tr><th></th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td><span class="ckey">Purpose</span></td><td>Record transactions</td><td>Analyse & report</td></tr><tr><td><span class="ckey">Operations</span></td><td>INSERT, UPDATE, DELETE</td><td>SELECT aggregations</td></tr><tr><td><span class="ckey">Data volume</span></td><td>Current/recent</td><td>Historical, large</td></tr><tr><td><span class="ckey">Azure service</span></td><td>Azure SQL Database</td><td>Azure Synapse Analytics</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Azure relational services <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/explore-provision-deploy-relational-database-offerings-azure/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Service</th><th>Use when</th></tr></thead><tbody><tr><td><span class="ckey">Azure SQL Database</span></td><td>New cloud-native apps. Fully managed PaaS, no SQL Server compatibility needed.</td></tr><tr><td><span class="ckey">SQL Managed Instance</span></td><td>Migrating existing SQL Server apps needing SQL Agent, CLR, cross-DB queries.</td></tr><tr><td><span class="ckey">SQL on Azure VMs</span></td><td>Full OS-level control needed. IaaS - you manage everything.</td></tr><tr><td><span class="ckey">Azure DB for PostgreSQL</span></td><td>Managed PostgreSQL for open-source apps.</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Cosmos DB APIs - which to use <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/explore-non-relational-data-offerings-azure/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>API</th><th>Data model</th><th>Use case</th></tr></thead><tbody><tr><td><span class="ckey">SQL/Core</span></td><td>JSON documents</td><td>General document store, flexible schema</td></tr><tr><td><span class="ckey">MongoDB</span></td><td>BSON documents</td><td>Migrate existing MongoDB apps</td></tr><tr><td><span class="ckey">Cassandra</span></td><td>Column-family</td><td>Wide-column, IoT, time-series</td></tr><tr><td><span class="ckey">Gremlin</span></td><td>Graph (vertices+edges)</td><td>Social networks, recommendations</td></tr><tr><td><span class="ckey">Table</span></td><td>Key-value</td><td>Migrate Azure Table Storage apps</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Analytics platform comparison <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/examine-components-of-modern-data-warehouse/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Service</th><th>What it is</th></tr></thead><tbody><tr><td><span class="ckey">Azure Synapse Analytics</span></td><td>Unified SQL + Spark + pipeline analytics platform</td></tr><tr><td><span class="ckey">Microsoft Fabric</span></td><td>Newer end-to-end SaaS analytics platform (successor to Synapse)</td></tr><tr><td><span class="ckey">Azure Data Factory</span></td><td>ETL/ELT pipeline orchestration service</td></tr><tr><td><span class="ckey">Azure Databricks</span></td><td>Advanced Apache Spark platform for ML and data engineering</td></tr><tr><td><span class="ckey">Power BI</span></td><td>Business intelligence and data visualisation - reports and dashboards</td></tr></tbody></table></div>`,
+  planDays:[
+    {label:"Week 1 - Core concepts",tasks:["Study Domain 1: Core data concepts (overview tab)","Complete all Data concepts flashcards","Learn OLTP vs OLAP, batch vs streaming","Study structured/semi-structured/unstructured data types"]},
+    {label:"Week 1 - Relational data",tasks:["Study Domain 2: Relational data on Azure","Complete all Relational flashcards","Practice SQL basics: SELECT, INSERT, CREATE TABLE","Understand Azure SQL Database vs Managed Instance"]},
+    {label:"Week 2 - Non-relational data",tasks:["Study Domain 3: Non-relational data on Azure","Complete all Non-relational flashcards","Memorise Cosmos DB API use cases","Learn Azure Blob, Table, and Data Lake Storage"]},
+    {label:"Week 2 - Analytics + review",tasks:["Study Domain 4: Analytics workloads","Complete all Analytics flashcards","Learn Synapse vs Fabric vs Data Factory","Take the practice quiz twice + do official practice test"]},
+  ],
+  examDay:["Good night's sleep before the exam","Log in / arrive 15 minutes early","Watch for 'which service should you use for X' questions","Know the Cosmos DB APIs by use case","OLTP = transactional. OLAP = analytical. Don't mix them up.","700/1000 to pass (≈70% correct)"],
+  resources:{
+    official:[
+      {t:"🏆 Cert page",n:"DP-900 Official Certification Page",d:"Schedule exam, view skills measured, access study guide.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/credentials/certifications/azure-data-fundamentals/"},
+      {t:"✅ Practice test",n:"Microsoft Official Practice Assessment",d:"Official practice questions with full explanations.",tag:"Free · Highly recommended",u:"https://learn.microsoft.com/en-us/credentials/certifications/exams/dp-900/practice/assessment?assessment-type=practice&assessmentId=24"},
+      {t:"📖 Learning path",n:"MS Learn: Core Data Concepts",d:"Domain 1 - data types, workloads, roles.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-core-data-concepts/"},
+      {t:"📖 Learning path",n:"MS Learn: Relational Data",d:"Domain 2 - SQL, Azure SQL Database, Managed Instance.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-relational-data/"},
+      {t:"📖 Learning path",n:"MS Learn: Non-relational & Analytics",d:"Domains 3 & 4 - Cosmos DB, storage, Synapse, Power BI.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/azure-data-fundamentals-explore-non-relational-data/"},
+    ],
+    youtube:[
+      {t:"🎥 Full course",n:"John Savill - DP-900 Study Cram",d:"Clear, concise walkthrough of all DP-900 objectives. Excellent diagrams.",tag:"Free · Highly rated",u:"https://www.youtube.com/watch?v=P3qmqUZJ7l0"},
+      {t:"🎥 Full course",n:"freeCodeCamp - DP-900 Course",d:"Full video covering all four DP-900 domains.",tag:"Free",u:"https://www.youtube.com/watch?v=oPV2bFDecsE"},
+    ],
+    tools:[
+      {t:"🧮 Azure tool",n:"Azure Cosmos DB Emulator",d:"Run Cosmos DB locally to explore APIs hands-on.",tag:"Free · Hands-on",u:"https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator"},
+      {t:"☁️ Free account",n:"Azure Free Account",d:"Try Azure SQL, Cosmos DB, and Synapse for free.",tag:"Free · £200 credit",u:"https://azure.microsoft.com/en-gb/free/"},
+      {t:"📊 Power BI Desktop",n:"Power BI Desktop (Free)",d:"Download and build reports. Great for hands-on Power BI learning.",tag:"Free · Download",u:"https://powerbi.microsoft.com/en-us/desktop/"},
+    ],
+  },
+},
+
+ai:{code:"AI-900",name:"Azure AI Fundamentals",color:"#7C5CFF",bg:"rgba(124,92,255,.1)",bd:"rgba(124,92,255,.28)",retire:true,
+  stats:"40–60 questions · 60 minutes · 700/1000 to pass · Retires June 30 2026",
+  tagline:"Machine learning, computer vision, NLP, generative AI, and responsible AI on Azure",
+  tags:["15–20% AI workloads & responsible AI","20–25% ML fundamentals","15–20% Computer vision","15–20% NLP workloads","15–20% Generative AI"],
+  regSteps:[
+    '⚠ This exam retires June 30, 2026. Book soon at <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/" target="_blank">the AI-900 cert page</a>',
+    'Sign in at <a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a> and click "Schedule exam" via Pearson VUE',
+    'Take the free <a href="https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-900/practice/assessment?assessment-type=practice&assessmentId=26" target="_blank">Official Microsoft Practice Assessment</a>',
+    'Complete the free MS Learn paths: <a href="https://learn.microsoft.com/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/" target="_blank">AI Fundamentals</a> · <a href="https://learn.microsoft.com/en-us/training/paths/explore-computer-vision-microsoft-azure/" target="_blank">Computer Vision</a> · <a href="https://learn.microsoft.com/en-us/training/paths/explore-natural-language-processing/" target="_blank">NLP</a> · <a href="https://learn.microsoft.com/en-us/training/paths/introduction-generative-ai/" target="_blank">Generative AI</a>',
+    'Preview the exam UI: <a href="https://aka.ms/examdemo" target="_blank">aka.ms/examdemo</a>',
+  ],
+  domains:[
+    {pct:"15–20%",name:"1 - AI workloads & responsible AI",chips:["Common AI use cases: ML, CV, NLP, conversational AI","Responsible AI principles","Fairness","Reliability & safety","Privacy & security","Inclusiveness","Transparency","Accountability"]},
+    {pct:"20–25%",name:"2 - Machine learning fundamentals",chips:["Supervised learning (regression, classification)","Unsupervised learning (clustering)","Deep learning","Azure Machine Learning service","AutoML","Azure ML designer","Training vs inference","Features, labels, models"]},
+    {pct:"15–20%",name:"3 - Computer vision workloads on Azure",chips:["Image classification","Object detection","Semantic segmentation","Optical character recognition (OCR)","Facial recognition","Azure AI Vision","Custom Vision","Azure Face API","Document Intelligence"]},
+    {pct:"15–20%",name:"4 - NLP workloads on Azure",chips:["Text analysis","Sentiment analysis","Named entity recognition","Key phrase extraction","Language detection","Translation","Speech-to-text / text-to-speech","Language Understanding (CLU)","Azure AI Language","Azure AI Speech","Azure Bot Service"]},
+    {pct:"15–20%",name:"5 - Generative AI workloads on Azure",chips:["Large language models (LLMs)","What generative AI can produce","Azure OpenAI Service","GPT models","DALL-E (image generation)","Embeddings","Responsible use of generative AI","Copilot in Microsoft 365"]},
+  ],
+  highlights:[
+    {t:"Responsible AI - 6 principles",b:"Fairness, Reliability & Safety, Privacy & Security, Inclusiveness, Transparency, Accountability. Know what each means - scenario questions love these."},
+    {t:"Supervised vs Unsupervised learning",b:"Supervised = labelled training data (regression predicts a number; classification predicts a category). Unsupervised = no labels (clustering groups similar data)."},
+    {t:"Computer vision services",b:"Azure AI Vision = image analysis (general). Custom Vision = train your own classifier. Face API = facial detection/recognition. Document Intelligence = extract structured data from documents/forms."},
+    {t:"Azure OpenAI Service",b:"Provides access to OpenAI's GPT, DALL-E, Whisper and Embeddings models hosted on Azure with Azure security and compliance. Not the same as OpenAI.com."},
+  ],
+  flashcards:[
+    {cat:"concepts",q:"What are the 6 Microsoft Responsible AI principles?",a:"Fairness (no bias), Reliability & Safety (works correctly and safely), Privacy & Security, Inclusiveness (accessible to all), Transparency (explainable), Accountability (humans are responsible for AI decisions).",doc:"https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/7-understand-responsible-ai"},
+    {cat:"concepts",q:"What is the difference between regression and classification in supervised ML?",a:"Regression = predicts a continuous numeric value (e.g. house price, temperature). Classification = predicts which category/class something belongs to (e.g. spam or not spam, cat or dog).",doc:"https://learn.microsoft.com/en-us/training/modules/use-automated-machine-learning/"},
+    {cat:"concepts",q:"What is unsupervised learning?",a:"Training a model on data without labels. The model discovers patterns or groups on its own. Main technique: clustering - grouping similar data points together.",doc:"https://learn.microsoft.com/en-us/training/modules/fundamentals-machine-learning/"},
+    {cat:"concepts",q:"What is Azure Machine Learning?",a:"Microsoft's cloud service for building, training, deploying, and managing ML models. Features include AutoML (automated model training), ML designer (visual pipeline), and managed compute.",doc:"https://learn.microsoft.com/en-us/training/modules/use-automated-machine-learning/"},
+    {cat:"vision",q:"What is the difference between image classification and object detection?",a:"Image classification = labels the whole image (labels the entire image as one category). Object detection = identifies AND locates multiple objects within an image with bounding boxes.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-images-computer-vision/"},
+    {cat:"vision",q:"What does Azure AI Vision do?",a:"Microsoft's pre-built computer vision service - analyses images for content, generates captions, detects objects, reads text (OCR), and identifies scenes. No ML training required.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-images-computer-vision/"},
+    {cat:"vision",q:"When would you use Azure Custom Vision?",a:"When you need to train a custom image classifier or object detector on YOUR OWN labelled images - e.g. detecting specific products on a production line or identifying proprietary equipment.",doc:"https://learn.microsoft.com/en-us/training/modules/classify-images-custom-vision/"},
+    {cat:"vision",q:"What is Azure Document Intelligence (formerly Form Recognizer)?",a:"An AI service that extracts structured data (fields, tables, values) from documents and forms - invoices, receipts, ID documents, contracts - using OCR and ML.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-receipts-form-recognizer/"},
+    {cat:"nlp",q:"What is sentiment analysis?",a:"NLP technique that determines whether text expresses a positive, negative, or neutral sentiment. Used for customer feedback analysis, social media monitoring, and reviews.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-text-with-text-analytics-service/"},
+    {cat:"nlp",q:"What is the Azure AI Language service?",a:"A cloud service for text analysis tasks: sentiment analysis, key phrase extraction, named entity recognition, language detection, and conversational language understanding (CLU).",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-text-with-text-analytics-service/"},
+    {cat:"nlp",q:"What is Azure Bot Service?",a:"A platform for building, hosting, and deploying conversational chatbots. Integrates with Azure AI Language for intent recognition and connects to channels like Teams, web, and Slack.",doc:"https://learn.microsoft.com/en-us/training/modules/build-faq-chatbot-qna-maker-azure-bot-service/"},
+    {cat:"genai",q:"What is a Large Language Model (LLM)?",a:"A deep learning model trained on massive amounts of text data. Capable of generating text, summarising, translating, answering questions, and writing code. Examples: GPT-4, GPT-3.5.",doc:"https://learn.microsoft.com/en-us/training/modules/introduction-generative-ai/"},
+    {cat:"genai",q:"What is the Azure OpenAI Service?",a:"Microsoft's Azure-hosted service providing access to OpenAI's models (GPT-4, DALL-E, Whisper, Embeddings) with Azure security, compliance, and private networking - not the same as OpenAI.com.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-azure-openai/"},
+    {cat:"genai",q:"What can DALL-E do?",a:"Generate original images from natural language text prompts. Example: \"a futuristic city at sunset in watercolour style.\" Available through Azure OpenAI Service.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-azure-openai/"},
+    {cat:"genai",q:"What is a prompt in the context of generative AI?",a:"The natural language input given to a generative AI model to guide its output. Prompt engineering is the practice of crafting effective prompts to get better, more accurate results.",doc:"https://learn.microsoft.com/en-us/training/modules/introduction-generative-ai/"},
+  ],
+  fcCats:["concepts","vision","nlp","genai"],
+  fcCatLabels:{concepts:"AI & ML",vision:"Computer vision",nlp:"NLP",genai:"Generative AI"},
+  quiz:[
+    {q:"A company's AI system gives less favourable loan decisions to applicants from certain postcodes. Which Responsible AI principle is being violated?",opts:["Transparency","Reliability","Fairness","Accountability"],ans:2,exp:"Fairness requires AI systems to work equitably for all groups and avoid bias based on protected characteristics or proxies like postcode.",doc:"https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/7-understand-responsible-ai"},
+    {q:"A model is trained to predict house prices from features like size and location. What type of ML is this?",opts:["Classification","Clustering","Regression (supervised)","Unsupervised learning"],ans:2,exp:"Regression predicts a continuous numeric value (house price). It is supervised because the training data includes labelled examples with known prices.",doc:"https://learn.microsoft.com/en-us/training/modules/fundamentals-machine-learning/"},
+    {q:"You want to group customers into segments based on purchasing behaviour with no predefined categories. What ML approach do you use?",opts:["Regression","Binary classification","Clustering (unsupervised)","Object detection"],ans:2,exp:"Clustering is unsupervised learning - the model groups similar data points together without labelled training data or predefined categories.",doc:"https://learn.microsoft.com/en-us/training/modules/fundamentals-machine-learning/"},
+    {q:"Which Azure service identifies AND locates multiple objects within an image, returning their positions?",opts:["Image classification","Object detection (Azure AI Vision)","OCR","Sentiment analysis"],ans:1,exp:"Object detection identifies and locates multiple objects in an image with bounding box coordinates. Image classification only labels the whole image.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-images-computer-vision/"},
+    {q:"A manufacturer wants to detect defects in their specific products on a production line. They have labelled photos of good and defective parts. Which service fits best?",opts:["Azure AI Vision (pre-built)","Azure Custom Vision","Azure Face API","Azure Document Intelligence"],ans:1,exp:"Azure Custom Vision lets you train a custom classifier on YOUR labelled images - ideal for domain-specific tasks like product defect detection.",doc:"https://learn.microsoft.com/en-us/training/modules/classify-images-custom-vision/"},
+    {q:"Which service extracts structured data - fields, tables, and values - from scanned invoices and receipts?",opts:["Azure AI Vision","Azure Bot Service","Azure Document Intelligence","Azure AI Language"],ans:2,exp:"Azure Document Intelligence (formerly Form Recognizer) extracts structured information from documents like invoices, receipts, contracts, and IDs.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-receipts-form-recognizer/"},
+    {q:"A social media team wants to automatically determine whether customer feedback is positive, negative, or neutral. Which capability is this?",opts:["Named entity recognition","Key phrase extraction","Sentiment analysis","Language detection"],ans:2,exp:"Sentiment analysis determines the emotional tone (positive, negative, neutral) of text. It's available in Azure AI Language service.",doc:"https://learn.microsoft.com/en-us/training/modules/analyze-text-with-text-analytics-service/"},
+    {q:"What is the Azure OpenAI Service?",opts:["Microsoft's own AI research lab","Azure-hosted access to OpenAI models (GPT, DALL-E) with Azure security","A replacement for Azure Machine Learning","A tool for building chatbots only"],ans:1,exp:"Azure OpenAI Service provides Azure-hosted access to OpenAI models (GPT-4, DALL-E, Whisper) with Azure's enterprise security, compliance, and networking - distinct from OpenAI.com.",doc:"https://learn.microsoft.com/en-us/training/modules/explore-azure-openai/"},
+    {q:"Which Responsible AI principle ensures that humans remain accountable for AI-driven decisions?",opts:["Transparency","Fairness","Inclusiveness","Accountability"],ans:3,exp:"Accountability means humans - not AI systems - are ultimately responsible for AI decisions. AI systems should be auditable and humans must be able to oversee and correct them.",doc:"https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/7-understand-responsible-ai"},
+    {q:"What does prompt engineering refer to in generative AI?",opts:["Writing Python code for AI models","Training a custom LLM","Crafting effective natural language inputs to get better outputs from AI models","Configuring Azure OpenAI network settings"],ans:2,exp:"Prompt engineering is the practice of carefully crafting natural language prompts to guide generative AI models towards producing more accurate, useful, and relevant outputs.",doc:"https://learn.microsoft.com/en-us/training/modules/introduction-generative-ai/"},
+  ],
+  cheatHTML:`<div class="cheat-sec"><div class="cheat-ttl">Responsible AI - 6 principles <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/7-understand-responsible-ai" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Principle</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="ckey">Fairness</span></td><td>AI works equitably for all groups - avoids bias</td></tr><tr><td><span class="ckey">Reliability & Safety</span></td><td>AI works correctly, consistently, and safely</td></tr><tr><td><span class="ckey">Privacy & Security</span></td><td>Protects personal data used in AI systems</td></tr><tr><td><span class="ckey">Inclusiveness</span></td><td>AI is accessible and benefits everyone</td></tr><tr><td><span class="ckey">Transparency</span></td><td>AI decisions are explainable and understandable</td></tr><tr><td><span class="ckey">Accountability</span></td><td>Humans are responsible for AI outcomes</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">ML types at a glance <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/fundamentals-machine-learning/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><span class="ckey">Regression</span></td><td>Predicts a numeric value (supervised)</td><td>House price prediction</td></tr><tr><td><span class="ckey">Classification</span></td><td>Predicts a category (supervised)</td><td>Spam detection, disease diagnosis</td></tr><tr><td><span class="ckey">Clustering</span></td><td>Groups similar data (unsupervised)</td><td>Customer segmentation</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Computer vision services <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/analyze-images-computer-vision/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Service</th><th>Use when</th></tr></thead><tbody><tr><td><span class="ckey">Azure AI Vision</span></td><td>General image analysis, captioning, object detection, OCR - pre-built, no training needed</td></tr><tr><td><span class="ckey">Custom Vision</span></td><td>Train a custom classifier/detector on YOUR labelled images</td></tr><tr><td><span class="ckey">Azure Face API</span></td><td>Facial detection, verification, and recognition</td></tr><tr><td><span class="ckey">Document Intelligence</span></td><td>Extract structured data (fields, tables) from forms, invoices, receipts</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">NLP services <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/analyze-text-with-text-analytics-service/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Capability</th><th>Service</th></tr></thead><tbody><tr><td><span class="ckey">Text analysis / sentiment</span></td><td>Azure AI Language</td></tr><tr><td><span class="ckey">Speech recognition / synthesis</span></td><td>Azure AI Speech</td></tr><tr><td><span class="ckey">Translation</span></td><td>Azure AI Translator</td></tr><tr><td><span class="ckey">Conversational chatbot</span></td><td>Azure Bot Service + Azure AI Language (CLU)</td></tr></tbody></table></div><div class="cheat-sec"><div class="cheat-ttl">Generative AI <a class="dbadge" href="https://learn.microsoft.com/en-us/training/modules/explore-azure-openai/" target="_blank">docs</a></div><table class="ctable"><thead><tr><th>Concept</th><th>Explanation</th></tr></thead><tbody><tr><td><span class="ckey">LLM</span></td><td>Large Language Model - deep learning model trained on massive text data (GPT-4)</td></tr><tr><td><span class="ckey">Azure OpenAI Service</span></td><td>Azure-hosted GPT/DALL-E/Whisper with Azure security - NOT the same as OpenAI.com</td></tr><tr><td><span class="ckey">DALL-E</span></td><td>Generates images from text prompts</td></tr><tr><td><span class="ckey">Prompt engineering</span></td><td>Crafting natural language inputs to get better AI outputs</td></tr></tbody></table></div>`,
+  planDays:[
+    {label:"Day 1 - AI & ML",tasks:["Study Domain 1: AI workloads & responsible AI","Memorise the 6 responsible AI principles and examples","Study Domain 2: ML fundamentals (regression, classification, clustering)","Complete all AI & ML flashcards"]},
+    {label:"Day 1 - Computer vision",tasks:["Study Domain 3: Computer vision workloads","Complete all Computer vision flashcards","Learn AI Vision vs Custom Vision vs Face API vs Document Intelligence","Watch a John Savill AI-900 video on CV"]},
+    {label:"Day 2 - NLP",tasks:["Study Domain 4: NLP workloads on Azure","Complete all NLP flashcards","Understand Azure AI Language, Speech, Translator, Bot Service","Study sentiment analysis, named entity recognition, CLU"]},
+    {label:"Day 2 - Generative AI + review",tasks:["Study Domain 5: Generative AI workloads","Complete all Generative AI flashcards","Understand Azure OpenAI, GPT, DALL-E, prompt engineering","Take the practice quiz twice + official practice assessment"]},
+  ],
+  examDay:["⚠ Book soon - AI-900 retires June 30, 2026","Know all 6 Responsible AI principles by heart","Supervised = labelled data. Unsupervised = no labels.","Azure OpenAI ≠ OpenAI.com - it's Azure-hosted with Azure security","Watch for 'which service for this AI task' questions","700/1000 to pass (≈70% correct)"],
+  resources:{
+    official:[
+      {t:"🏆 Cert page",n:"AI-900 Official Certification Page",d:"Schedule exam, view skills, study guide. Book soon - retires June 30 2026.",tag:"Free · Official · ⚠ Retiring 2026",u:"https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/"},
+      {t:"✅ Practice test",n:"Microsoft Official Practice Assessment",d:"Official practice questions with explanations - closest to the real exam.",tag:"Free · Highly recommended",u:"https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-900/practice/assessment?assessment-type=practice&assessmentId=26"},
+      {t:"📖 Learning path",n:"MS Learn: Get Started with AI",d:"Domain 1 & 2 - AI workloads, responsible AI, ML fundamentals.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/"},
+      {t:"📖 Learning path",n:"MS Learn: Computer Vision",d:"Domain 3 - Azure AI Vision, Custom Vision, Face, Document Intelligence.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/explore-computer-vision-microsoft-azure/"},
+      {t:"📖 Learning path",n:"MS Learn: NLP",d:"Domain 4 - Azure AI Language, Speech, translation, chatbots.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/explore-natural-language-processing/"},
+      {t:"📖 Learning path",n:"MS Learn: Generative AI",d:"Domain 5 - Azure OpenAI, GPT, DALL-E, prompt engineering.",tag:"Free · Official",u:"https://learn.microsoft.com/en-us/training/paths/introduction-generative-ai/"},
+    ],
+    youtube:[
+      {t:"🎥 Full course",n:"John Savill - AI-900 Study Cram",d:"Concise, clear AI-900 walkthrough with diagrams and real examples. Best free resource.",tag:"Free · Top rated",u:"https://www.youtube.com/watch?v=E9aarWMLJw0"},
+      {t:"🎥 Full course",n:"freeCodeCamp - AI-900 Course",d:"Full-length video covering all five AI-900 domains.",tag:"Free",u:"https://www.youtube.com/watch?v=OwZHNH8EfSU"},
+    ],
+    tools:[
+      {t:"🤖 Azure AI",n:"Azure AI Services Demo",d:"Try Azure AI Vision, Language, and Speech services for free in the browser.",tag:"Free · Hands-on",u:"https://azure.microsoft.com/en-us/products/ai-services/"},
+      {t:"☁️ Free account",n:"Azure Free Account",d:"Explore Azure AI services hands-on with a free account.",tag:"Free · £200 credit",u:"https://azure.microsoft.com/en-gb/free/"},
+    ],
+  },
+},
+};
+
+let activeCert="az", quizState={};
+
+function applyAccent(c){
+  const cert=CERTS[c];
+  document.documentElement.style.setProperty("--acc",cert.color);
+  document.documentElement.style.setProperty("--acc-bg",cert.bg);
+  document.documentElement.style.setProperty("--acc-bd",cert.bd);
+}
+
+function goHome(){
+  document.getElementById("landing").style.display="flex";
+  document.getElementById("hub").style.display="none";
+  document.documentElement.style.setProperty("--acc","#0066FF");
+  document.documentElement.style.setProperty("--acc-bg","rgba(0,102,255,.1)");
+  document.documentElement.style.setProperty("--acc-bd","rgba(0,102,255,.28)");
+}
+
+function loadCert(c){
+  activeCert=c;
+  quizState={idx:0,score:0,answered:false,wrong:[]};
+  applyAccent(c);
+  const cert=CERTS[c];
+  document.getElementById("landing").style.display="none";
+  document.getElementById("hub").style.display="block";
+  document.getElementById("brand-code").textContent=cert.code;
+  document.getElementById("hub-footer").textContent=cert.code+" Study Hub · "+cert.tagline;
+  ["az","dp","ai"].forEach(x=>{
+    const el=document.getElementById("ctab-"+x);
+    el.classList.toggle("active",x===c);
+  });
+  const stabs=document.querySelectorAll(".stab");
+  stabs.forEach((t,i)=>t.classList.toggle("active",i===0));
+  buildOverview(cert);
+  buildFlashcards(cert);
+  document.getElementById("p-quiz").innerHTML="";
+  buildCheatsheet(cert);
+  buildPlan(cert,c);
+  buildResources(cert);
+  buildUpdates(cert);
+  showPanel("overview");
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll(".stab").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  showPanel(id);
+  if(id==="quiz"&&!quizState.started)startQuiz();
+  if(id==="updates") buildUpdates(CERTS[activeCert]);
+}
+
+function showPanel(id){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p-"+id).classList.add("active");
+}
+
+function buildOverview(cert){
+  const retireBanner=cert.retire?`<div class="retire-banner"><strong>⚠ Important:</strong> The ${cert.code} exam retires on June 30, 2026. You will no longer be able to earn this certification after that date. <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/" target="_blank" style="color:#fca5a5;border-bottom:1px solid rgba(252,165,165,.3)">Book your exam now →</a></div>`:"";
+  const heroTags=cert.tags.map(t=>`<span class="ctag">${t}</span>`).join("");
+  const domains=cert.domains.map(d=>`<div class="dcard"><div class="dcard-top"><span class="dpct">${d.pct}</span><span class="dname">${d.name}</span></div><div class="chips">${d.chips.map(c=>`<span class="chip">${c}</span>`).join("")}</div></div>`).join("");
+  const highlights=cert.highlights.map(h=>`<li><strong>${h.t}:</strong> ${h.b}</li>`).join("");
+  const regSteps=cert.regSteps.map(s=>`<li>${s}</li>`).join("");
+  document.getElementById("p-overview").innerHTML=`
+    ${retireBanner}
+    <div class="cert-hero"><div class="cert-hero-code">${cert.code}</div><div><div class="cert-hero-name">${cert.name}</div><div class="cert-hero-meta">${cert.stats}</div><div class="cert-hero-tags">${heroTags}</div></div></div>
+    <div class="slabel">Exam domains</div><div class="stitle">What's on the test</div>
+    <p class="sdesc">${cert.domains.length} domains. Focus time on the highest-weighted sections.</p>
+    <div class="dg">${domains}</div>
+    <div class="warn-box"><div class="warn-lbl">⚡ Key things examiners love to test</div><ul>${highlights}</ul></div>
+    <div class="reg-card"><div class="reg-title">How to register & practice officially</div><ul class="reg-steps">${regSteps}</ul></div>`;
+}
+
+// FLASHCARDS
+let fcCards=[], fcIndex=0, fcFlipped=false;
+function buildFlashcards(cert){
+  fcCards=[...cert.flashcards]; fcIndex=0; fcFlipped=false;
+  renderFilterBar(cert);
+  renderFc();
+}
+function renderFilterBar(cert){
+  const all=`<button class="fbtn active" onclick="setFcFilter('all',this)">All (${cert.flashcards.length})</button>`;
+  const cats=cert.fcCats.map(c=>{
+    const n=cert.flashcards.filter(f=>f.cat===c).length;
+    return `<button class="fbtn" onclick="setFcFilter('${c}',this)">${cert.fcCatLabels[c]} (${n})</button>`;
+  }).join("");
+  document.getElementById("p-flashcards").innerHTML=`
+    <div class="slabel">Active recall</div><div class="stitle">Flashcards</div>
+    <p class="sdesc">${cert.flashcards.length} cards covering all domains. Tap to flip - each answer links to the official Microsoft docs.</p>
+    <div class="filter-bar" id="fc-filter">${all}${cats}</div>
+    <div class="fc-meta"><span class="fc-count" id="fc-counter"></span></div>
+    <div class="pbar-wrap"><div class="pbar" id="fc-pbar" style="width:3%"></div></div>
+    <div class="flashcard" onclick="flipCard()" id="flashcard">
+      <span class="fc-cat" id="fc-cat"></span>
+      <div class="fc-q" id="fc-q"></div>
+      <div class="fc-a" id="fc-a"></div>
+      <div class="fc-doc" id="fc-doc"><a id="fc-doc-a" href="#" target="_blank">📄 Official Microsoft docs →</a></div>
+      <div class="fc-hint" id="fc-hint">↩ tap to reveal</div>
+    </div>
+    <div class="fc-nav">
+      <button class="btn" onclick="prevCard()">← Prev</button>
+      <button class="btn" onclick="shuffleCards()">⇄ Shuffle</button>
+      <button class="btn" onclick="nextCard()">Next →</button>
+    </div>`;
+  renderFc();
+}
+function setFcFilter(f,btn){
+  const cert=CERTS[activeCert];
+  document.querySelectorAll("#fc-filter .fbtn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  fcCards=f==="all"?[...cert.flashcards]:cert.flashcards.filter(c=>c.cat===f);
+  fcIndex=0;renderFc();
+}
+function renderFc(){
+  if(!fcCards.length)return;
+  const c=fcCards[fcIndex];
+  const cert=CERTS[activeCert];
+  const label=cert.fcCatLabels[c.cat]||c.cat;
+  document.getElementById("fc-q").textContent=c.q;
+  document.getElementById("fc-a").textContent=c.a;
+  document.getElementById("fc-a").classList.remove("show");
+  document.getElementById("fc-hint").style.display="";
+  document.getElementById("fc-doc").classList.remove("show");
+  document.getElementById("fc-doc-a").href=c.doc;
+  document.getElementById("fc-cat").textContent=label;
+  document.getElementById("fc-counter").textContent=`Card ${fcIndex+1} of ${fcCards.length}`;
+  document.getElementById("fc-pbar").style.width=((fcIndex+1)/fcCards.length*100)+"%";
+  document.getElementById("flashcard").classList.remove("flipped");
+  fcFlipped=false;
+}
+function flipCard(){
+  if(!fcFlipped){
+    document.getElementById("fc-a").classList.add("show");
+    document.getElementById("fc-hint").style.display="none";
+    document.getElementById("fc-doc").classList.add("show");
+    document.getElementById("flashcard").classList.add("flipped");
+    fcFlipped=true;
+  }
+}
+function nextCard(){fcIndex=(fcIndex+1)%fcCards.length;renderFc();}
+function prevCard(){fcIndex=(fcIndex-1+fcCards.length)%fcCards.length;renderFc();}
+function shuffleCards(){for(let i=fcCards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcCards[i],fcCards[j]]=[fcCards[j],fcCards[i]];}fcIndex=0;renderFc();}
+
+// QUIZ
+function startQuiz(){
+  const cert=CERTS[activeCert];
+  const shuffled=shuffleArray([...cert.quiz]);
+  quizState={idx:0,score:0,answered:false,wrong:[],started:true,total:shuffled.length,questions:shuffled};
+  renderQuiz();
+}
+function renderQuiz(){
+  const cert=CERTS[activeCert];
+  if(quizState.idx>=quizState.total){renderResults();return;}
+  const q=(quizState.questions||cert.quiz)[quizState.idx];
+  const pct=(quizState.idx/quizState.total*100).toFixed(0);
+  document.getElementById("p-quiz").innerHTML=`
+    <div class="slabel">Test yourself</div><div class="stitle">Practice Quiz</div>
+    <p class="sdesc">${quizState.total} scenario-based questions. Every answer links to the official Microsoft docs.</p>
+    <div class="qmeta">Question ${quizState.idx+1} of ${quizState.total} · Score: ${quizState.score}</div>
+    <div class="pbar-wrap"><div class="pbar" style="width:${pct}%"></div></div>
+    <div class="qcard">
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,i)=>`<button class="qopt" id="qo${i}" onclick="selectAns(${i})">${o}</button>`).join("")}</div>
+      <div class="qfb" id="qfb"></div>
+      <div class="qfoot"><button class="btn btn-acc" id="qnext" style="display:none" onclick="nextQ()">Next →</button></div>
+    </div>`;
+  quizState.answered=false;
+}
+function selectAns(i){
+  if(quizState.answered)return;
+  quizState.answered=true;
+  const cert=CERTS[activeCert];
+  const q=(quizState.questions||cert.quiz)[quizState.idx];
+  document.querySelectorAll(".qopt").forEach(o=>o.classList.add("disabled"));
+  document.getElementById("qo"+q.ans).classList.add("correct");
+  const fb=document.getElementById("qfb");
+  if(i===q.ans){
+    quizState.score++;
+    fb.innerHTML=`✓ Correct! ${q.exp}<div class="qdoc"><a href="${q.doc}" target="_blank">📄 Official Microsoft docs →</a></div>`;
+    fb.className="qfb show correct";
+  } else {
+    document.getElementById("qo"+i).classList.add("wrong");
+    fb.innerHTML=`✗ Incorrect. ${q.exp}<div class="qdoc"><a href="${q.doc}" target="_blank">📄 Official Microsoft docs →</a></div>`;
+    fb.className="qfb show wrong";
+    quizState.wrong.push({...q});
+  }
+  document.getElementById("qnext").style.display="";
+}
+function nextQ(){quizState.idx++;renderQuiz();}
+function renderResults(){
+  const pct=Math.round(quizState.score/quizState.total*100);
+  const grade=pct>=80?"Ready to pass! 🎉":pct>=65?"Good - a bit more review will help.":"Keep going - review the missed topics.";
+  const col=pct>=80?"var(--a3,#10b981)":pct>=65?"#f59e0b":"#f43f5e";
+  let wrongHtml="";
+  if(quizState.wrong.length){
+    wrongHtml=`<div style="text-align:left;margin-top:18px"><div style="font-family:var(--mono);font-size:9px;color:#f43f5e;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px">Review these missed topics</div>${quizState.wrong.map(w=>`<div style="background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:8px 11px;margin-bottom:6px;font-size:11px;color:var(--t2);line-height:1.5">${w.q}<br><a href="${w.doc}" target="_blank" style="color:var(--acc);text-decoration:none;font-family:var(--mono);font-size:9px;border-bottom:1px solid var(--acc-bd)">📄 docs →</a></div>`).join("")}</div>`;
+  }
+  document.getElementById("p-quiz").innerHTML=`
+    <div class="slabel">Test yourself</div><div class="stitle">Practice Quiz</div>
+    <div class="rescrd">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">Quiz complete</div>
+      <div class="rsc-n" style="color:${col}">${quizState.score}/${quizState.total}</div>
+      <div class="rsc-l">${pct}% · ${grade}</div>
+      <div class="rsc-g"><div class="rsc-s"><div class="rsc-sn" style="color:#00B37E">${quizState.score}</div><div class="rsc-sl">Correct</div></div><div class="rsc-s"><div class="rsc-sn" style="color:#f43f5e">${quizState.total-quizState.score}</div><div class="rsc-sl">Incorrect</div></div></div>
+      ${wrongHtml}
+      <button class="btn btn-acc" onclick="restartQuiz()" style="margin-top:18px">Retake quiz</button>
+    </div>`;
+}
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function restartQuiz(){
+  const cert=CERTS[activeCert];
+  const shuffled=shuffleArray([...cert.quiz]);
+  quizState={idx:0,score:0,answered:false,wrong:[],started:true,total:shuffled.length,questions:shuffled};
+  renderQuiz();
+}
+
+function buildCheatsheet(cert){
+  document.getElementById("p-cheatsheet").innerHTML=`<div class="slabel">Quick reference</div><div class="stitle">Cheat Sheet</div><p class="sdesc">Most-tested distinctions condensed. Every section links to official Microsoft docs.</p>${cert.cheatHTML}`;
+}
+
+function buildPlan(cert,c){
+  const days=cert.planDays.map((d,di)=>`
+    <div class="pday"><div class="pday-lbl">${d.label}</div>
+    ${d.tasks.map((t,ti)=>{
+      const k=`${c}-${di}-${ti}`;let done=false;
+      try{const s=JSON.parse(localStorage.getItem("az-hub-v1")||"{}");done=!!s[k];}catch(e){}
+      return `<div class="ptask ${done?"done":""}" onclick="toggleTask('${c}','${di}-${ti}',this)"><div class="pcheck"></div><span class="ptask-text">${t}</span></div>`;
+    }).join("")}
+    </div>`).join("");
+  const examTasks=cert.examDay.map((t,i)=>{
+    const k=`${c}-exam-${i}`;let done=false;
+    try{const s=JSON.parse(localStorage.getItem("az-hub-v1")||"{}");done=!!s[k];}catch(e){}
+    return `<div class="ptask ${done?"done":""}" onclick="toggleTask('${c}','exam-${i}',this)"><div class="pcheck"></div><span class="ptask-text">${t}</span></div>`;
+  }).join("");
+  document.getElementById("p-plan").innerHTML=`
+    <div class="slabel">Study plan</div><div class="stitle">Study Plan</div>
+    <p class="sdesc">Tick off tasks as you complete them - progress saves in your browser.</p>
+    <div class="plan-g">${days}</div>
+    <div class="pday" style="border-radius:var(--rl);background:var(--s1);border:1px solid var(--bd);padding:14px">
+      <div class="pday-lbl">Exam day checklist</div>${examTasks}
+    </div>`;
+}
+function toggleTask(c,key,el){
+  const fullKey=`${c}-${key}`;let s={};
+  try{s=JSON.parse(localStorage.getItem("az-hub-v1")||"{}");}catch(e){}
+  if(s[fullKey]){delete s[fullKey];el.classList.remove("done");}
+  else{s[fullKey]=true;el.classList.add("done");}
+  try{localStorage.setItem("az-hub-v1",JSON.stringify(s));}catch(e){}
+}
+
+function buildResources(cert){
+  const r=cert.resources;
+  const sec=(title,arr)=>`<div class="res-sec">${title}</div><div class="res-g">${arr.map(x=>`<a href="${x.u}" target="_blank" class="rcard"><div class="rcard-type">${x.t}</div><div class="rcard-title">${x.n}</div><div class="rcard-desc">${x.d}</div><span class="rcard-tag">${x.tag}</span></a>`).join("")}</div>`;
+  document.getElementById("p-resources").innerHTML=`
+    <div class="slabel">Further study</div><div class="stitle">Resources</div>
+    <p class="sdesc">Official Microsoft content, top YouTube courses, and hands-on tools - curated for ${cert.code}.</p>
+    ${sec("📚 Official Microsoft",r.official)}
+    ${sec("🎥 YouTube training",r.youtube)}
+    ${sec("🧮 Tools & hands-on",r.tools)}`;
+}
+
+// ── BUILD UPDATES PANEL ──
+function buildUpdates(cert){
+  const storedKey = "az-hub-updates-"+cert.code;
+  let stored = [];
+  try { stored = JSON.parse(localStorage.getItem(storedKey)||"[]"); } catch(e){}
+  
+  let pinnedHtml = "";
+  if(stored.length){
+    stored.forEach(function(u,i){
+      pinnedHtml += "<div class=\"update-card\">" +
+        "<div class=\"update-card-header\">" +
+        "<span class=\"update-badge\">"+u.type+"</span>" +
+        "<span class=\"update-date\">"+u.date+"</span>" +
+        "<button onclick=\"deleteUpdate('"+cert.code+"',"+i+")\" style=\"margin-left:auto;font-size:9px;font-family:var(--mono);color:var(--t3);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:3px\" onmouseover=\"this.style.color='#f43f5e\'\" onmouseout=\"this.style.color='var(--t3)'\">remove</button>" +
+        "</div>" +
+        "<div class=\"update-title\">"+u.title+"</div>" +
+        "<div class=\"update-body\">"+u.body+"</div>" +
+        "</div>";
+    });
+  } else {
+    pinnedHtml = "<div style=\"font-size:12px;color:var(--t3);font-family:var(--mono);padding:16px 0\">No pinned updates yet. Run an AI check above and pin the results.</div>";
+  }
+
+  document.getElementById("p-updates").innerHTML =
+    "<div class=\"slabel\">Exam intelligence</div>" +
+    "<div class=\"stitle\">AI Updates Checker</div>" +
+    "<p class=\"sdesc\">Ask the AI to check for the latest "+cert.code+" exam changes, new topics, or syllabus updates. Results are generated fresh each time.</p>" +
+    "<div class=\"ai-checker\">" +
+    "<div class=\"ai-checker-title\">Check for "+cert.code+" exam updates</div>" +
+    "<div class=\"ai-checker-desc\">The AI will analyse what it knows about recent changes to the "+cert.code+" exam objectives, new Azure services added to the syllabus, and anything you should be aware of before your exam.</div>" +
+    "<div class=\"cert-select-bar\">" +
+    "<button class=\"fbtn active\" onclick=\"runAiUpdate('changes','"+cert.code+"',this)\">Recent changes</button>" +
+    "<button class=\"fbtn\" onclick=\"runAiUpdate('newTopics','"+cert.code+"',this)\">New topics to know</button>" +
+    "<button class=\"fbtn\" onclick=\"runAiUpdate('tips','"+cert.code+"',this)\">Last-minute tips</button>" +
+    "<button class=\"fbtn\" onclick=\"runAiUpdate('compare','"+cert.code+"',this)\">Compare to previous</button>" +
+    "</div>" +
+    "<div class=\"ai-response\" id=\"ai-response-box\">" +
+    "<div id=\"ai-response-content\"></div>" +
+    "</div>" +
+    "</div>" +
+    "<div class=\"slabel\" style=\"margin-top:8px\">Pinned updates log</div>" +
+    "<div style=\"font-size:12px;color:var(--t2);margin-bottom:14px;font-weight:400\">Key changes pinned from AI checks. These persist in your browser.</div>" +
+    "<div id=\"pinned-updates\">" + pinnedHtml + "</div>";
+}
+
+const AI_PROMPTS = {
+  changes: function(code){ return "You are a Microsoft certification expert. Describe the most recent changes and updates to the "+code+" exam objectives as of early 2026. Be specific and concise. Format as bullet points. Focus on what is new or different from previous versions. Keep under 250 words."; },
+  newTopics: function(code){ return "You are a Microsoft certification expert. List the most important new or recently emphasised topics in the "+code+" exam that candidates often overlook. Format as a numbered list with a brief explanation. Under 250 words."; },
+  tips: function(code){ return "You are a Microsoft certification expert. Give 8 specific actionable last-minute exam tips for someone taking the "+code+" exam in the next 2 days. Focus on common traps, high-frequency topics, and test-taking strategy. Be direct and concise. Under 250 words."; },
+  compare: function(code){ return "You are a Microsoft certification expert. Compare the current "+code+" exam (2025-2026) to its previous version. What was added, removed, or changed in weighting? Present as a clear before/after comparison. Under 250 words."; },
+};
+
+async function runAiUpdate(type, code, btn){
+  document.querySelectorAll(".cert-select-bar .fbtn").forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+  
+  const box = document.getElementById("ai-response-box");
+  const content = document.getElementById("ai-response-content");
+  box.classList.add("show");
+  content.innerHTML = "<div class=\"ai-thinking\"><div class=\"ai-thinking-dot\"></div><div class=\"ai-thinking-dot\"></div><div class=\"ai-thinking-dot\"></div><span style=\"margin-left:4px\">Analysing "+code+" exam data...</span></div>";
+  
+  try {
+    const prompt = AI_PROMPTS[type](code);
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    
+    const data = await response.json();
+    const text = (data.content||[]).map(function(b){ return b.text||""; }).join("") || "No response received.";
+    const escaped = text.replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    
+    content.innerHTML = 
+      "<div class=\"ai-output-text\" style=\"color:var(--t1);\">" + text + "</div>" +
+      "<div style=\"margin-top:14px;display:flex;gap:8px;flex-wrap:wrap\">" +
+      "<button class=\"btn btn-acc\" onclick=\"pinUpdate('"+code+"','"+type+"')\">Pin this to log</button>" +
+      "<span style=\"font-size:10px;color:var(--t3);font-family:var(--mono);align-self:center\">Generated by Claude AI - verify against official Microsoft Learn</span>" +
+      "</div>";
+  } catch(err) {
+    content.innerHTML = "<div style=\"color:#f87171;font-size:12px\">Could not connect to AI. Check your connection and try again.<br><span style=\"font-size:10px;opacity:.7\">" + err.message + "</span></div>";
+  }
+}
+
+function pinUpdate(code, type){
+  const key = "az-hub-updates-"+code;
+  let stored = [];
+  try { stored = JSON.parse(localStorage.getItem(key)||"[]"); } catch(e){}
+  
+  const content = document.getElementById("ai-response-content");
+  const textEl = content ? content.querySelector(".ai-output-text") : null;
+  const fullText = textEl ? textEl.innerText : "See AI Updates tab for details.";
+  const typeLabels = {changes:"Changes",newTopics:"New topics",tips:"Tips",compare:"Comparison"};
+  
+  stored.unshift({
+    type: typeLabels[type]||type,
+    date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),
+    title: (typeLabels[type]||type) + " - " + code,
+    body: fullText.slice(0,800)
+  });
+  if(stored.length > 10) stored = stored.slice(0,10);
+  try { localStorage.setItem(key, JSON.stringify(stored)); } catch(e){}
+  buildUpdates(CERTS[activeCert]);
+}
+
+function deleteUpdate(code, idx){
+  const key = "az-hub-updates-"+code;
+  let stored = [];
+  try { stored = JSON.parse(localStorage.getItem(key)||"[]"); } catch(e){}
+  stored.splice(idx,1);
+  try { localStorage.setItem(key, JSON.stringify(stored)); } catch(e){}
+  buildUpdates(CERTS[activeCert]);
+}
+
+// keyboard shortcuts
+document.addEventListener("keydown", e => {
+  if(!document.getElementById("hub").style.display || document.getElementById("hub").style.display==="none") return;
+  const tabs = ["overview","flashcards","quiz","cheatsheet","plan","resources","updates"];
+  const keys = {"1":"overview","2":"flashcards","3":"quiz","4":"cheatsheet","5":"plan","6":"resources","7":"updates"};
+  if(e.key in keys && !e.ctrlKey && !e.metaKey && !e.altKey && document.activeElement.tagName!=="INPUT"){
+    const id = keys[e.key];
+    const stabs = document.querySelectorAll(".stab");
+    const idx = tabs.indexOf(id);
+    if(idx>=0 && stabs[idx]) switchTab(id, stabs[idx]);
+  }
+  if(e.key==="ArrowRight" && document.getElementById("p-flashcards").classList.contains("active")) nextCard();
+  if(e.key==="ArrowLeft" && document.getElementById("p-flashcards").classList.contains("active")) prevCard();
+  if(e.key===" " && document.getElementById("p-flashcards").classList.contains("active")){e.preventDefault();flipCard();}
+  if(e.key==="?" ) {
+    const kh = document.getElementById("kbd-hint");
+    kh && kh.classList.toggle("show");
+  }
+});
+
+// streak tracker
+function updateStreak(){
+  const bar = document.getElementById("streak-bar");
+  if(!bar) return;
+  bar.classList.add("show");
+  document.getElementById("streak-cert").textContent = CERTS[activeCert].code;
+  // quiz best
+  const bestKey = "az-hub-best-"+activeCert;
+  const best = localStorage.getItem(bestKey)||"-";
+  document.getElementById("streak-quiz").textContent = best;
+  // cards seen
+  const cardKey = "az-hub-cards-"+activeCert;
+  const cards = parseInt(localStorage.getItem(cardKey)||"0");
+  document.getElementById("streak-cards").textContent = cards;
+  // tasks done
+  let s={};try{s=JSON.parse(localStorage.getItem("az-hub-v1")||"{}");}catch(e){}
+  const tasks = Object.keys(s).filter(k=>k.startsWith(activeCert+"-")).length;
+  document.getElementById("streak-tasks").textContent = tasks;
+}
+
+// track card views
+const _origNextCard = nextCard;
+window.nextCard = function(){ _origNextCard(); trackCard(); };
+const _origPrevCard = prevCard;
+window.prevCard = function(){ _origPrevCard(); trackCard(); };
+function trackCard(){
+  const k = "az-hub-cards-"+activeCert;
+  const n = parseInt(localStorage.getItem(k)||"0")+1;
+  try{localStorage.setItem(k, n);}catch(e){}
+  const el = document.getElementById("streak-cards");
+  if(el) el.textContent = n;
+}
+
+// track quiz best
+const _origRenderResults = renderResults;
+window.renderResults = function(){
+  _origRenderResults();
+  const pct = Math.round(quizState.score/quizState.total*100);
+  const k = "az-hub-best-"+activeCert;
+  const prev = parseInt(localStorage.getItem(k)||"0");
+  if(pct > prev){
+    try{localStorage.setItem(k, pct+"%");}catch(e){}
+    const el = document.getElementById("streak-quiz");
+    if(el) el.textContent = pct+"%";
+  }
+  updateStreak();
+};
+
+// add kbd hint div to body
+document.body.insertAdjacentHTML("beforeend",
+  "<div class=\"kbd-hint\" id=\"kbd-hint\">" +
+  "<span style=\"color:var(--t2);margin-right:4px\">Shortcuts:</span>" +
+  "<span><span class=\"kbd-key\">1-7</span> tabs</span>" +
+  "<span><span class=\"kbd-key\">Space</span> flip card</span>" +
+  "<span><span class=\"kbd-key\">&larr; &rarr;</span> prev/next</span>" +
+  "<span><span class=\"kbd-key\">?</span> toggle</span>" +
+  "</div>");
+
+// wire updateStreak into loadCert
+const _origLoadCert = loadCert;
+window.loadCert = function(c){
+  _origLoadCert(c);
+  setTimeout(updateStreak, 100);
+};
+</script>
+</body>
+</html>
